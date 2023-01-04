@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/edit_id"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="147dp"
+        android:paddingLeft="15dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="ID"
+        android:background="@drawable/login_box"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/edit_pw"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="15dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="PW"
+        android:background="@drawable/login_box"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_marginTop="42dp"
+        android:orientation="horizontal"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_findID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="Find ID" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|" />
+
+        <Button
+            android:id="@+id/btn_findPW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="Find PW" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_loginSubmit"
+        android:layout_width="320dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="226dp"
+        android:text="Login"
+        android:textSize="14dp"
+        android:background="@drawable/blue_colored_btn"
+        />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="14dp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:text="Sign Up" />
+
+
+</LinearLayout>
