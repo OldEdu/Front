@@ -111,7 +111,7 @@
         android:id="@+id/btn_signupSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_colored_btn"
+        android:backgroundTint="#2A3F8D"
         android:layout_marginTop="145dp"
         android:text="Sign Up" />
 
