@@ -16,30 +16,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/studentbutton"
         android:layout_width="184dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:layout_marginBottom="130dp"
         android:backgroundTint="#E9E9E9"
-        android:text="For\nStudent"
+        android:text="@string/for_nstudent"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/teacherbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/teacherbutton"
         android:layout_width="184dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="221dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
         android:backgroundTint="#E9E9E9"
-        android:text="For\nTeacher"
+        android:text="@string/for_nteacher"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/studentbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

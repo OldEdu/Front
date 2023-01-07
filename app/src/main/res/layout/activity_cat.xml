@@ -11,7 +11,7 @@
         android:layout_width="282dp"
         android:layout_height="60dp"
         android:layout_marginTop="130dp"
-        android:text="Transportation"
+        android:text="@string/transportation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,33 +23,33 @@
         android:layout_width="282dp"
         android:layout_height="60dp"
         android:layout_marginTop="260dp"
-        android:text="Search"
+        android:backgroundTint="#FFB9B9"
+        android:text="@string/search"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#FFB9B9"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="282dp"
         android:layout_height="60dp"
         android:layout_marginTop="390dp"
-        android:text="Economic"
+        android:backgroundTint="#96D081"
+        android:text="@string/economic"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="#96D081"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button9"
         android:layout_width="282dp"
         android:layout_height="60dp"
         android:layout_marginTop="520dp"
-        android:text="Life style"
+        android:text="@string/life_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

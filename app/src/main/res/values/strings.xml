@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">OldEdu</string>
+    <string name="for_nstudent">For\nStudent</string>
+    <string name="for_nteacher">For\nTeacher</string>
+    <string name="transportation">Transportation</string>
+    <string name="life_style">Life style</string>
+    <string name="search">Search</string>
+    <string name="economic">Economic</string>
 </resources>
