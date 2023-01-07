@@ -6,4 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".CatActivity">
 
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="282dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="130dp"
+        android:text="Transportation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#B3CAED"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="282dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="260dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#FFB9B9"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="282dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="390dp"
+        android:text="Economic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#96D081"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="282dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="520dp"
+        android:text="Life style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#EFE9B2"
+        android:textColor="@color/black"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
