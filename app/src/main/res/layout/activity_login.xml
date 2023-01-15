@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1"
         android:background="#2A3F8D"
         >
 
@@ -25,14 +24,14 @@
             />
 
         <TextView
-            android:layout_width="260dp"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Login"
-            android:textColor="#ffffff"
             android:textAlignment="center"
-            android:textSize="35dp" />
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
 
         <Button
             android:layout_width="wrap_content"
