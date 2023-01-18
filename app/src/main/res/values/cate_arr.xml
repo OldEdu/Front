@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="wide_cate">
+        <item>transportation</item>
+        <item>search</item>
+        <item>banking</item>
+        <item>life style</item>
+    </string-array>
+</resources>
