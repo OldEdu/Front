@@ -122,7 +122,7 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="226dp"
+        android:layout_marginTop="170dp"
         android:text="Login"
         android:textSize="14dp"
         android:backgroundTint="#2A3F8D"
