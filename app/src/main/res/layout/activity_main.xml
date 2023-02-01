@@ -19,15 +19,14 @@
         android:id="@+id/studentbutton"
         android:layout_width="184dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="444dp"
         android:backgroundTint="#E9E9E9"
         android:text="@string/for_nstudent"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/teacherbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/teacherbutton"
@@ -42,4 +41,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studentbutton" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="164dp"
+        android:background="#2A3F8D"
+        android:gravity="center"
+        android:text="Main page"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/studentbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
