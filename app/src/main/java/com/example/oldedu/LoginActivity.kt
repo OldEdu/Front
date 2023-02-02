@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         var retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:8080")
+            .baseUrl("http://34.168.110.14:8080/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -30,6 +31,16 @@ class LoginActivity : AppCompatActivity() {
         fun moveToSignupPage() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
+        }
+        fun moveToMyPage(type : Boolean?) {
+
+            if (type==true) { // 학생일 경우
+                val intent = Intent(this, MypageStudentActivity::class.java)
+                startActivity(intent)
+            } else { // 선생님일 경우
+                val intent = Intent(this, MypageTeacherActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         btn_signUp.setOnClickListener{moveToSignupPage()}
@@ -42,11 +53,17 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Login>, response: Response<Login>) {
                     // success
                     var login = response.body()
+                    var dialog = AlertDialog.Builder(this@LoginActivity)
+                    if (login?.success==true) {
+//                        dialog.setMessage("로그인 성공!")
+                        moveToMyPage(login?.userType)
+                    } else {
                     Log.d("LOGIN","success : "+login?.success.toString())
                     Log.d("LOGIN","msg : "+login?.msg)
-                    var dialog = AlertDialog.Builder(this@LoginActivity)
+
                     dialog.setTitle(login?.success.toString())
                     dialog.setMessage(login?.msg)
+                    }
                     dialog.show()
                 }
 
