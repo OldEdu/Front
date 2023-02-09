@@ -10,6 +10,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#2A3F8D"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/back_icon"
+
+            />
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="My page"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="HOME"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView_name"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="닉네임"
+        android:textSize="25dp"/>
+    <TextView
+        android:id="@+id/textView_role"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="(student)"
+        android:textSize="14dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
 
@@ -21,17 +75,6 @@
             android:backgroundTint="#B3CAED"
             android:drawableEnd="@drawable/arrow_right_light"
             android:text="scrap"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/btn_like"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#B3CAED"
-            android:drawableEnd="@drawable/arrow_right_light"
-            android:text="like"
             android:textColor="@color/black" />
 
     </LinearLayout>

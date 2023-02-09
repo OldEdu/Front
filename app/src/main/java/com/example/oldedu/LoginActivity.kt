@@ -32,13 +32,15 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
-        fun moveToMyPage(type : Boolean?) {
+        fun moveToMyPage(type : Boolean?, userID : String) {
 
             if (type==true) { // 학생일 경우
                 val intent = Intent(this, MypageStudentActivity::class.java)
+                intent.putExtra("userID", userID)
                 startActivity(intent)
             } else { // 선생님일 경우
                 val intent = Intent(this, MypageTeacherActivity::class.java)
+                intent.putExtra("userID", userID)
                 startActivity(intent)
             }
         }
@@ -56,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     var dialog = AlertDialog.Builder(this@LoginActivity)
                     if (login?.success==true) {
 //                        dialog.setMessage("로그인 성공!")
-                        moveToMyPage(login?.userType)
+                        moveToMyPage(login?.userType, id)
                     } else {
                     Log.d("LOGIN","success : "+login?.success.toString())
                     Log.d("LOGIN","msg : "+login?.msg)

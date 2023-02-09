@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/textView_nickname"
+                android:id="@+id/textView_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
