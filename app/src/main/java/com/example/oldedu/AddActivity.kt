@@ -11,10 +11,7 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        back.setOnClickListener({
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        })
+
 
         btn_home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
