@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_mypage_student.*
 import kotlinx.android.synthetic.main.activity_mypage_teacher.*
+import kotlinx.android.synthetic.main.activity_mypage_teacher.btn_back
 import kotlinx.android.synthetic.main.activity_mypage_teacher.textView_name
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,6 +53,17 @@ class MypageTeacherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_teacher)
+
+        home.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn_back.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(
             GsonConverterFactory.create()).build()

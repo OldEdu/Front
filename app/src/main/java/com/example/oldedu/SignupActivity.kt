@@ -19,7 +19,10 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import kotlinx.android.synthetic.main.activity_signup.back
+import kotlinx.android.synthetic.main.activity_signup.btn_home
 import java.util.concurrent.TimeUnit
 
 class SignupActivity : AppCompatActivity() {
@@ -32,6 +35,16 @@ class SignupActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+
+        btn_home.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
+        back.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
 
         init()
 
