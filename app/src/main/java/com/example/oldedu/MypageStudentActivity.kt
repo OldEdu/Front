@@ -8,6 +8,9 @@ import android.util.Log
 import androidx.annotation.Keep
 //import android.telecom.Call
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.activity_mypage_student.back
+import kotlinx.android.synthetic.main.activity_mypage_student.btn_home
 import retrofit2.Retrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,6 +49,16 @@ class MypageStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_student)
+
+        btn_home.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
+        back.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(MyPageStudentApi::class.java)

@@ -7,17 +7,31 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import kotlinx.android.synthetic.main.activity_add.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.btn_home
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        btn_home.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
+        btn_back.setOnClickListener({
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        })
+
 
         var retrofit = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/")
@@ -79,5 +93,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
+        
+
+       
+        
+        
+
+
     }
 }

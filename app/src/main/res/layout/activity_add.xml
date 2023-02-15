@@ -14,14 +14,15 @@
         android:background="#2A3F8D"
         >
 
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
-            android:layout_width="38dp"
-            android:layout_height="34dp"
-            android:background="@drawable/back_icon"
-
-            />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:text="BACK"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="290dp"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_home"
             android:layout_gravity="center"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:background="@android:color/transparent"
             android:textColor="#ffffff"
             android:text="HOME"
