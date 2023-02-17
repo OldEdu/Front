@@ -46,6 +46,8 @@
             />
 
 
+
+
     </LinearLayout>
 
     <ImageView
@@ -53,6 +55,39 @@
         android:layout_width="match_parent"
         android:layout_height="454dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/cmt_userid_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textStyle="bold"
+        android:text="userid" />
+
+    <TextView
+        android:id="@+id/cmt_date_tv"
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="date" />
+
+    <TextView
+        android:id="@+id/cmt_content_tv"
+        android:layout_width="match_parent"
+        android:textColor="#333333"
+        android:layout_height="wrap_content"
+        android:text="content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="16dp"
+        android:background="#000000"
+        />
+
+
+
+
 
 
 
