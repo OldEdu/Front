@@ -19,16 +19,53 @@ import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.activity_mypage_student.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.activity_signup.back
 import kotlinx.android.synthetic.main.activity_signup.btn_home
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
+
+data class Register(
+    @SerializedName("success")
+    val success: Boolean ,
+)
+
+data class UserInfo(
+    @SerializedName("userID")
+    val userID: String ,
+
+    @SerializedName("psword")
+    val psword: String ,
+
+    @SerializedName("userName")
+    val userName: String ,
+
+    @SerializedName("userType")
+    val userType: Boolean
+)
+
+interface RegisterApi {
+    @POST("register")
+    fun  postUserRegister (@Body userInfo:UserInfo): Call<MyPageStudent>
+}
+
 
 class SignupActivity : AppCompatActivity() {
 //    FirebaseApp.initalizesApp(Context)
 
-    private lateinit var auth: FirebaseAuth
+    lateinit var auth: FirebaseAuth
+    var verificationId = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +73,19 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
+        var phoneNum:String = "" ;
+        var nickname:String = "" ;
+        var password:String = "" ;
+        var role:Boolean =false  ;
+        var verified:Boolean = false ;
+        var confirmPW:Boolean = false ;
+
+        // retrofit 회원가입
+        val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(
+            GsonConverterFactory.create()).build()
+        val service = retrofit.create(RegisterApi::class.java)
+
+        // 헤더
         btn_home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -48,9 +98,28 @@ class SignupActivity : AppCompatActivity() {
 
         init()
 
+//        fun handleTeaStu():Boolean { // teacher, student 구분
+//            if(role=="student") {
+//                return
+//            }
+//        }
+
         fun clickPhoneSendAuth() { // firebase 전화로 인증 코드 전송
+
+            val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                override fun onVerificationCompleted(credential: PhoneAuthCredential) { }
+                override fun onVerificationFailed(e: FirebaseException) {
+                }
+                override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken) {
+                    this@SignupActivity.verificationId = verificationId
+                }
+            }
+
             var number = edit_signup_id.text.trim().toString()
             if (number.isNotEmpty()) {
+                btn_code_confirm.isEnabled = true
+                btn_code_confirm.setBackgroundColor(Color.parseColor("#2A3F8D"))
+                btn_code_confirm.setTextColor(Color.parseColor("#ffffff"))
                 val options = PhoneAuthOptions.newBuilder(auth)
                     .setPhoneNumber(number)       // Phone number to verify
                     .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -58,12 +127,54 @@ class SignupActivity : AppCompatActivity() {
                     .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
                     .build()
                 PhoneAuthProvider.verifyPhoneNumber(options)
+                auth.setLanguageCode("kr")
+                phoneNum = number
+
             }else {
                 Toast.makeText(this,"Please Enter Number",Toast.LENGTH_SHORT)
             }
         }
 
+        fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) { // 인증 번호 입력 후 확인 버튼
+            auth.signInWithCredential(credential)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        verified = true
+                        text_phone_confirmed.text = "confirmed"
+                    }
+                    else {
+                        verified = false
+                        text_phone_confirmed.text = "Please enter the authentication number again"
+                    }
+                }
+        }
+
+        btn_code_confirm.setOnClickListener {
+            val credential = PhoneAuthProvider.getCredential(verificationId, edit_phone_verifying.text.toString())
+            signInWithPhoneAuthCredential(credential)
+        }
+
+
         fun moveToSignupPage() { // 회원가입 완료 (로그인 페이지로 이동)
+            val userInfo = UserInfo(phoneNum,password, nickname,role)
+            service.postUserRegister(userInfo).enqueue(object : Callback<MyPageStudent> {
+                override fun onResponse(
+                    call: Call<MyPageStudent>,
+                    response: Response<MyPageStudent>
+                ) {
+//                    var result : MyPageStudent? = response.body()
+                    var result = response.body()
+                    Log.d("테스트","test"+response)
+                    textView_name.text = result?.userName
+                    Log.d("retrofit","성공"+result?.userID)
+                    Log.d("retrofit","성공"+result?.userName)
+                }
+
+                override fun onFailure(call: Call<MyPageStudent>, t: Throwable) {
+                    Log.d("retrofit","실패")
+                }
+
+            })
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
@@ -82,59 +193,48 @@ class SignupActivity : AppCompatActivity() {
                 id: Long
             ) {
                 //position은 선택한 아이템의 위치를 넘겨주는 인자입니다.
+                if (data[position] == "student") {
+                    role = true
+                } else {
+                    role = false
+                }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-        btn_signupSubmit.setOnClickListener { moveToSignupPage() }
+        // 회원가입 완료 누르기
+        btn_signupSubmit.setOnClickListener {
+            nickname = edit_signup_nickname.text.toString()
+            if (!edit_signup_pw.text.toString().isNullOrBlank() && edit_signup_pw.text.toString() == edit_signup_confirmPW.text.toString()) {
+                password = edit_signup_pw.text.toString()
+                confirmPW = true
+            } else {
+                confirmPW = false
+            }
+
+            if (!nickname.isNullOrBlank() && confirmPW==true && verified ) {
+                moveToSignupPage()
+//                test.text = role.toString()
+            } else {
+                if (edit_signup_pw.text.toString() != edit_signup_confirmPW.text.toString()){
+                    text_pwnotmatch_warn.text = "The password doesn't match"
+                }
+                test.text = "Registration failed" + nickname + confirmPW.toString()
+
+            }
+        }
+
+
 
     }
+
+
+
 
     private fun init() {
         auth = FirebaseAuth.getInstance()
     }
 
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                } else {
-                    // Sign in failed, display a message and update the UI
-                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        // The verification code entered was invalid
-                    }
-                    // Update UI
-                }
-            }
-    }
 
-    private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            signInWithPhoneAuthCredential(credential)
-        }
-
-        override fun onVerificationFailed(e: FirebaseException) {
-            if (e is FirebaseAuthInvalidCredentialsException) {
-                // Invalid request
-                Log.d("TAG", "onVertificationFailed : ${e.toString()}")
-            } else if (e is FirebaseTooManyRequestsException) {
-                // The SMS quota for the project has been exceeded
-                Log.d("TAG", "onVertificationFailed : ${e.toString()}")
-            }
-
-            // Show a message and update the UI
-        }
-
-        override fun onCodeSent(
-            verificationId: String,
-            token: PhoneAuthProvider.ForceResendingToken
-        ) {
-         // Save verification ID and resending token so we can use them later
-
-        }
-    }
 }
 

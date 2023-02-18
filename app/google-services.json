@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "521662709176",
+    "project_id": "oldedu-c93f3",
+    "storage_bucket": "oldedu-c93f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521662709176:android:584358f433a63e2593e34d",
+        "android_client_info": {
+          "package_name": "com.example.oldedu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521662709176-9qebl5k3h633i75fite63mrg8seb01ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.oldedu",
+            "certificate_hash": "76901cf742622e610caa79753b3a484d203ea27b"
+          }
+        },
+        {
+          "client_id": "521662709176-c7a74ca0qlgi8ir1ijv2hip887l2s8k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUUrYKPid8K04VEtbg1IWWu6QXeV9EWtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521662709176-c7a74ca0qlgi8ir1ijv2hip887l2s8k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

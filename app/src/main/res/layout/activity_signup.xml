@@ -129,9 +129,10 @@
 
 
         <TextView
+            android:id="@+id/text_phone_confirmed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="confirmed"
+            android:text=""
             android:textColor="#B3CAED"
             android:textSize="10dp"
             />
@@ -188,13 +189,7 @@
             android:background="@drawable/blue_border_btn"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Available Password"
-            android:textColor="#B3CAED"
-            android:textSize="10dp"
-            />
+
 
     </LinearLayout>
 
@@ -223,9 +218,10 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <TextView
+            android:id="@+id/text_pwnotmatch_warn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The password doesn't match"
+            android:text=""
             android:textColor="#FF7D7D"
             android:textSize="10dp"
             />
