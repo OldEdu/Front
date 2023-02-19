@@ -1,7 +1,5 @@
 package com.example.oldedu
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -10,15 +8,10 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_mypage_student.*
@@ -31,9 +24,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 data class Register(
@@ -131,7 +122,7 @@ class SignupActivity : AppCompatActivity() {
                 phoneNum = number
 
             }else {
-                Toast.makeText(this,"Please Enter Number",Toast.LENGTH_SHORT)
+                Toast.makeText(this,"Please Enter Number",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -218,8 +209,10 @@ class SignupActivity : AppCompatActivity() {
             } else {
                 if (edit_signup_pw.text.toString() != edit_signup_confirmPW.text.toString()){
                     text_pwnotmatch_warn.text = "The password doesn't match"
+                } else {
+                    text_pwnotmatch_warn.text = ""
                 }
-                test.text = "Registration failed" + nickname + confirmPW.toString()
+                Toast.makeText(this,"Failed to Register",Toast.LENGTH_SHORT).show()
 
             }
         }

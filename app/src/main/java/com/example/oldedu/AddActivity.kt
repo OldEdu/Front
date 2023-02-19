@@ -23,6 +23,11 @@ class AddActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        btn_create.setOnClickListener {
+            val intent = Intent(this, UploadEduImgActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }
