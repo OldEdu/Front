@@ -52,7 +52,7 @@ class edu1_lifestyle : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<dto>, t: Throwable) {
-                    TODO("Not yet implemented")
+
                 }
 
             })
@@ -65,6 +65,6 @@ class edu1_lifestyle : AppCompatActivity() {
     }
 
     companion object{
-        private const val Tag = "edu1_lifestyle"
+        const val Tag = "edu1_lifestyle"
     }
 }
