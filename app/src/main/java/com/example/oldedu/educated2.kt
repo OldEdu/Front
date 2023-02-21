@@ -22,7 +22,7 @@ class educated2 : AppCompatActivity() {
         })
 
         back.setOnClickListener({
-            val intent = Intent(this, educated1::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })
 

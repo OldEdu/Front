@@ -60,27 +60,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".educated1_transport"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Dialog"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".dialogtest"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".UploadEduInfoActivity"
             android:exported="false">
             <meta-data
@@ -109,13 +88,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".educated1"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".UploadEduTextActivity"
             android:exported="false">
             <meta-data
@@ -129,13 +101,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".educated1"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".MypageStudentActivity"
             android:exported="false">
