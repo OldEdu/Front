@@ -24,7 +24,22 @@ class CatActivity : AppCompatActivity() {
         })
 
         transportation.setOnClickListener({
-            val intent = Intent(this, educated1Activity::class.java)
+            val intent = Intent(this, edu1_transport::class.java)
+            startActivity(intent)
+        })
+
+        searching.setOnClickListener({
+            val intent = Intent(this, edu1_search::class.java)
+            startActivity(intent)
+        })
+
+        economic.setOnClickListener({
+            val intent = Intent(this, edu1_economic::class.java)
+            startActivity(intent)
+        })
+
+        lifestyle.setOnClickListener({
+            val intent = Intent(this, edu1_lifestyle::class.java)
             startActivity(intent)
         })
 
