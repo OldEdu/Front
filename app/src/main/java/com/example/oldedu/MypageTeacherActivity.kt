@@ -93,6 +93,7 @@ class MypageTeacherActivity : AppCompatActivity() {
         // Make a new Content Button
         btn_makeNewContent.setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)
+            intent.putExtra("userID",userID)
             startActivity(intent)
         }
     }

@@ -10,8 +10,7 @@ class AddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
-
-
+        val userID = intent.getStringExtra("userID").toString()
 
         btn_home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
@@ -24,7 +23,8 @@ class AddActivity : AppCompatActivity() {
         })
 
         btn_create.setOnClickListener {
-            val intent = Intent(this, UploadEduImgActivity::class.java)
+            val intent = Intent(this, UploadEduInfoActivity::class.java)
+            intent.putExtra("userID",userID)
             startActivity(intent)
         }
 

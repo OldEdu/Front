@@ -48,7 +48,7 @@ data class UserInfo(
 
 interface RegisterApi {
     @POST("register")
-    fun  postUserRegister (@Body userInfo:UserInfo): Call<MyPageStudent>
+    fun  postUserRegister (@Body userInfo:UserInfo): Call<Register>
 }
 
 
@@ -148,20 +148,18 @@ class SignupActivity : AppCompatActivity() {
 
         fun moveToSignupPage() { // 회원가입 완료 (로그인 페이지로 이동)
             val userInfo = UserInfo(phoneNum,password, nickname,role)
-            service.postUserRegister(userInfo).enqueue(object : Callback<MyPageStudent> {
+            service.postUserRegister(userInfo).enqueue(object : Callback<Register> {
                 override fun onResponse(
-                    call: Call<MyPageStudent>,
-                    response: Response<MyPageStudent>
+                    call: Call<Register>,
+                    response: Response<Register>
                 ) {
 //                    var result : MyPageStudent? = response.body()
                     var result = response.body()
-                    Log.d("테스트","test"+response)
-                    textView_name.text = result?.userName
-                    Log.d("retrofit","성공"+result?.userID)
-                    Log.d("retrofit","성공"+result?.userName)
+//                    textView_name.text = result?.userName
+
                 }
 
-                override fun onFailure(call: Call<MyPageStudent>, t: Throwable) {
+                override fun onFailure(call: Call<Register>, t: Throwable) {
                     Log.d("retrofit","실패")
                 }
 

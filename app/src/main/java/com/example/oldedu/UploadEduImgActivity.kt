@@ -1,6 +1,7 @@
 package com.example.oldedu
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +18,22 @@ class UploadEduImgActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_edu_img)
+
+        val postID = intent.getStringExtra("postID")
+
         btn_addImg.setOnClickListener { openGallery() }
         btn_deleteImg.setOnClickListener { handleDelImgBtn() }
         btn_createPost.setOnClickListener {
-            val intent = Intent(this,AddEduImgActivity::class.java)
-            Log.d("방금 업로드한 사진은~??!!!",currentImgUrl.toString())
-            intent.putExtra("imgUrl",currentImgUrl.toString())
-            startActivity(intent)
+            if(!currentImgUrl.toString().isNullOrBlank()) {
+                val intent = Intent(this,UploadEduTextActivity::class.java)
+                intent.putExtra("imgUrl",currentImgUrl.toString())
+                intent.putExtra("postID",postID)
+                startActivity(intent)
+            } else {
+                val build = AlertDialog.Builder(this).setTitle("There is no image")
+                    .setMessage("Please upload the image")
+                build.show()
+            }
         }
     }
 
