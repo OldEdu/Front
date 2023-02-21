@@ -69,10 +69,10 @@ class UploadEduInfoActivity : AppCompatActivity() {
             if (!edit_title.text.toString().isNullOrBlank()) {
                 var postData = PostData(cate, edit_title.text.toString(),userID)
                 postApi(postData)
-                intent.putExtra("newPostTitle",edit_title.text.toString())
-                intent.putExtra("newPostCate",cate)
+                intent.putExtra("postTitle",edit_title.text.toString())
+                intent.putExtra("postCate",cate)
                 intent.putExtra("userID", userID)
-                intent.putExtra("newPostID",postID)
+                intent.putExtra("postID",postID)
                 startActivity(intent)
             } else {
                 val build = AlertDialog.Builder(this).setTitle("There is no title")
