@@ -5,5 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class edu (
     @SerializedName("title") val title: String,
     @SerializedName("userID") val userID: String,
-    @SerializedName("category") val category: String
-        )
+    @SerializedName("category") val category: String,
+    @SerializedName("heart") val heart: Int,
+    @SerializedName("views") val views: Int,
+
+
+    )

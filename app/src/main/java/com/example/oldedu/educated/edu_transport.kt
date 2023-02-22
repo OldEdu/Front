@@ -9,4 +9,5 @@ interface edu_transport {
     fun getpost(
 
     ): Call<dto>
+
 }

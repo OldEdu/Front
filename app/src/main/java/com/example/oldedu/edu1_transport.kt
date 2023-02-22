@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oldedu.adapter.eduadapter
-import com.example.oldedu.databinding.ActivityEdu1LifestyleBinding
 import com.example.oldedu.databinding.ActivityEdu1TransportBinding
-import com.example.oldedu.educated.edu_lifestyle
 import com.example.oldedu.educated.edu_transport
+import com.example.oldedu.educated.edu_transport2
+import com.example.oldedu.educated.edu_transport3
 import com.example.oldedu.model.dto
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 class edu1_transport : AppCompatActivity() {
@@ -29,14 +26,70 @@ class edu1_transport : AppCompatActivity() {
         setContentView(binding.root)
 
         initview()
-        val retrofit = Retrofit.Builder()
+        val retrofit1 = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/heartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val edu_transport = retrofit.create(edu_transport::class.java)
+        val retrofit2 = Retrofit.Builder()
+            .baseUrl("http://34.168.110.14:8080/viewsPosts/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val retrofit3 = Retrofit.Builder()
+            .baseUrl("http://34.168.110.14:8080/recentPosts/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val edu_transport = retrofit1.create(edu_transport::class.java)
+        val edu_transport2 = retrofit2.create(edu_transport2::class.java)
+        val edu_transport3 = retrofit3.create(edu_transport3::class.java)
+
 
         edu_transport.getpost()
+            .enqueue(object : Callback<dto> {
+                override fun onResponse(call: Call<dto>, response: Response<dto>) {
+                    if (!response.isSuccessful){
+                        return
+                    }
+                    response.body()?.let{
+                        Log.d(edu1_lifestyle.Tag,it.toString())
+
+                        it.result.forEach{edu->
+                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                        }
+                        adapter.submitList(it.result)
+                    }
+                }
+
+                override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                }
+
+            })
+        edu_transport2.getpost()
+            .enqueue(object : Callback<dto> {
+                override fun onResponse(call: Call<dto>, response: Response<dto>) {
+                    if (!response.isSuccessful){
+                        return
+                    }
+                    response.body()?.let{
+                        Log.d(edu1_lifestyle.Tag,it.toString())
+
+                        it.result.forEach{edu->
+                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                        }
+                        adapter.submitList(it.result)
+                    }
+                }
+
+                override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                }
+
+            })
+
+        edu_transport3.getpost()
             .enqueue(object : Callback<dto> {
                 override fun onResponse(call: Call<dto>, response: Response<dto>) {
                     if (!response.isSuccessful){
@@ -61,10 +114,16 @@ class edu1_transport : AppCompatActivity() {
     fun initview(){
         adapter = eduadapter()
 
-        binding.list.layoutManager = LinearLayoutManager(this)
-        binding.list.adapter = adapter
+        binding.heartlist.layoutManager = LinearLayoutManager(this)
+        binding.heartlist.adapter = adapter
+
+        binding.viewlist.layoutManager = LinearLayoutManager(this)
+        binding.viewlist.adapter = adapter
+
+        binding.recentlist.layoutManager = LinearLayoutManager(this)
+        binding.recentlist.adapter = adapter
     }
     companion object{
-        private const val Tag = "transport"
+        private const val Tag = "edu1_transport"
     }
 }

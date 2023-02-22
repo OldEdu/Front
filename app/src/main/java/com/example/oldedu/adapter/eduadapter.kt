@@ -14,7 +14,9 @@ class eduadapter: ListAdapter<edu, eduadapter.eduItemViewHolder>(diffUtil) {
         fun bind(edumodel:edu){
             binding.titletext.text = edumodel.title
             binding.userIDtext.text = edumodel.userID
+
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): eduItemViewHolder {
