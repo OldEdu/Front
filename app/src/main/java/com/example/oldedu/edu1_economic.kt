@@ -8,6 +8,7 @@ import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.databinding.ActivityEdu1EconomicBinding
 import com.example.oldedu.educated.*
 import com.example.oldedu.model.dto
+import com.example.oldedu.model.searchdto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -46,23 +47,23 @@ class edu1_economic : AppCompatActivity() {
         val edu_economic2 = retrofit2.create(edu_economic2::class.java)
         val edu_economic3 = retrofit3.create(edu_economic3::class.java)
 
-        edu_economic.getpost()
-            .enqueue(object : Callback<dto> {
-                override fun onResponse(call: Call<dto>, response: Response<dto>) {
+        edu_economic.getpost1("")
+            .enqueue(object : Callback<searchdto> {
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }
                 }
 
-                override fun onFailure(call: Call<dto>, t: Throwable) {
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
                 }
 
@@ -74,10 +75,10 @@ class edu1_economic : AppCompatActivity() {
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }
@@ -96,10 +97,10 @@ class edu1_economic : AppCompatActivity() {
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }

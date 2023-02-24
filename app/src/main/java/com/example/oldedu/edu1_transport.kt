@@ -53,10 +53,10 @@ class edu1_transport : AppCompatActivity() {
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }
@@ -74,10 +74,10 @@ class edu1_transport : AppCompatActivity() {
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }
@@ -96,10 +96,10 @@ class edu1_transport : AppCompatActivity() {
                         return
                     }
                     response.body()?.let{
-                        Log.d(edu1_lifestyle.Tag,it.toString())
+                        Log.d(Tag,it.toString())
 
                         it.result.forEach{edu->
-                            Log.d(edu1_lifestyle.Tag,edu.toString())
+                            Log.d(Tag,edu.toString())
                         }
                         adapter.submitList(it.result)
                     }
