@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".edu1_search">
 
+
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="0dp"

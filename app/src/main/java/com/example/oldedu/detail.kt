@@ -1,9 +1,11 @@
 package com.example.oldedu
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.oldedu.databinding.ActivityDetailBinding
 import com.example.oldedu.model.edu
+import kotlinx.android.synthetic.main.activity_detail.*
 
 class detail : AppCompatActivity() {
 
@@ -18,5 +20,11 @@ class detail : AppCompatActivity() {
 
         binding.titletextview.text=model?.title.orEmpty()
         binding.detailview.text=model?.postID.orEmpty()
+
+        txtdetail.setOnClickListener({
+            val intent = Intent(this, educated2::class.java)
+            startActivity(intent)
+        })
     }
+
 }
