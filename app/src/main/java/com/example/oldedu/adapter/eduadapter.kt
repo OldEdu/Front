@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.oldedu.databinding.ItemLifeBinding
 import com.example.oldedu.model.edu
 
-class eduadapter: ListAdapter<edu, eduadapter.eduItemViewHolder>(diffUtil) {
+class eduadapter(private var itemClickedListener: (edu)->Unit): ListAdapter<edu, eduadapter.eduItemViewHolder>(diffUtil) {
     inner class eduItemViewHolder(private val binding: ItemLifeBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(edumodel:edu){
             binding.titletext.text = edumodel.title
-            binding.userIDtext.text = edumodel.userID
+            binding.userIDtext.text = edumodel.userName
+
+            binding.root.setOnClickListener{
+                itemClickedListener(edumodel)
+            }
 
         }
 

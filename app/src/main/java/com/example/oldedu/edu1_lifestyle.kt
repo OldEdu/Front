@@ -1,5 +1,6 @@
 package com.example.oldedu
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -147,7 +148,11 @@ class edu1_lifestyle : AppCompatActivity() {
             })
     }
     fun initview(){
-        adapter = eduadapter()
+        adapter = eduadapter(itemClickedListener = {
+            val intent = Intent(this, detail::class.java)
+            intent.putExtra("edumodel",it)
+            startActivity(intent)
+        })
 
         binding.heartlist.layoutManager = LinearLayoutManager(this)
         binding.heartlist.adapter = adapter

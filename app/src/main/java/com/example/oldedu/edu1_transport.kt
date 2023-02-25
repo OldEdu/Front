@@ -1,8 +1,11 @@
 package com.example.oldedu
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.databinding.ActivityEdu1TransportBinding
@@ -10,6 +13,7 @@ import com.example.oldedu.educated.edu_transport
 import com.example.oldedu.educated.edu_transport2
 import com.example.oldedu.educated.edu_transport3
 import com.example.oldedu.model.dto
+import com.example.oldedu.model.searchdto
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -17,6 +21,7 @@ class edu1_transport : AppCompatActivity() {
 
     private lateinit var binding: ActivityEdu1TransportBinding
     private lateinit var adapter: eduadapter
+    private lateinit var Edu_transport:edu_transport
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +32,7 @@ class edu1_transport : AppCompatActivity() {
 
         initview()
         val retrofit1 = Retrofit.Builder()
-            .baseUrl("http://34.168.110.14:8080/heartPosts/")
+            .baseUrl("http://34.168.110.14:8080/searchRecentPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -41,14 +46,14 @@ class edu1_transport : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val edu_transport = retrofit1.create(edu_transport::class.java)
+        Edu_transport = retrofit1.create(edu_transport::class.java)
         val edu_transport2 = retrofit2.create(edu_transport2::class.java)
         val edu_transport3 = retrofit3.create(edu_transport3::class.java)
 
 
-        edu_transport.getpost()
-            .enqueue(object : Callback<dto> {
-                override fun onResponse(call: Call<dto>, response: Response<dto>) {
+        Edu_transport.getpost("")
+            .enqueue(object : Callback<searchdto> {
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
                         return
                     }
@@ -62,7 +67,7 @@ class edu1_transport : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<dto>, t: Throwable) {
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
                 }
 
@@ -110,9 +115,38 @@ class edu1_transport : AppCompatActivity() {
                 }
 
             })
+        binding.searchBar.setOnKeyListener { v, keyCode, event ->
+            if(keyCode== KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN){
+                search(binding.searchBar.text.toString())
+                return@setOnKeyListener true
+            }
+
+            return@setOnKeyListener false
+        }
+    }
+    private fun search(keyword:String){
+        Edu_transport.getpost(keyword)
+            .enqueue(object : Callback<searchdto>{
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
+                    if (!response.isSuccessful){
+                        return
+                    }
+                    adapter.submitList(response.body()?.result.orEmpty())
+
+                }
+
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
+
+                }
+
+            })
     }
     fun initview(){
-        adapter = eduadapter()
+        adapter = eduadapter(itemClickedListener = {
+            val intent = Intent(this, detail::class.java)
+            intent.putExtra("edumodel",it)
+            startActivity(intent)
+        })
 
         binding.heartlist.layoutManager = LinearLayoutManager(this)
         binding.heartlist.adapter = adapter
