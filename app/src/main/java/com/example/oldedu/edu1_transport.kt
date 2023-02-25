@@ -25,12 +25,12 @@ class edu1_transport : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityEdu1TransportBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
         initview()
+
         val retrofit1 = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/searchRecentPosts/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -51,7 +51,7 @@ class edu1_transport : AppCompatActivity() {
         val edu_transport3 = retrofit3.create(edu_transport3::class.java)
 
 
-        Edu_transport.getpost("")
+        Edu_transport.getpost1("")
             .enqueue(object : Callback<searchdto> {
                 override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
@@ -125,7 +125,7 @@ class edu1_transport : AppCompatActivity() {
         }
     }
     private fun search(keyword:String){
-        Edu_transport.getpost(keyword)
+        Edu_transport.getpost1(keyword)
             .enqueue(object : Callback<searchdto>{
                 override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){

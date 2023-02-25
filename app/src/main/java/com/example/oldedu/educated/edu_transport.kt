@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface edu_transport {
     @GET("/searchRecentPosts/transportation?output=json")
-    fun getpost(
+    fun getpost1(
         @Query("keyword") keyword:String
 
     ): Call<searchdto>
