@@ -32,7 +32,7 @@ class edu1_transport : AppCompatActivity() {
         initview()
 
         val retrofit1 = Retrofit.Builder()
-            .baseUrl("http://34.168.110.14:8080/searchRecentPosts/")
+            .baseUrl("http://34.168.110.14:8080/searchHeartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

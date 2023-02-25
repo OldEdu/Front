@@ -12,7 +12,7 @@ interface edu_lifestyle {
 
     ): Call<dto>
 
-    @GET("/searchRecentPosts/life style?output=json")
+    @GET("/searchHeartPosts/life style?output=json")
     fun getpost1(
         @Query("keyword") keyword:String
 

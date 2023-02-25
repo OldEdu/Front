@@ -12,7 +12,7 @@ interface edu_economic {
 
     ): Call<dto>
 
-    @GET("/searchHearts/economic?output=json")
+    @GET("/searchHeartPosts/economic?output=json")
     fun getpost1(
         @Query("keyword") keyword:String
 

@@ -7,7 +7,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface edu_transport {
-    @GET("/searchRecentPosts/transportation?output=json")
+    @GET("/heartPosts/transportation?output=json")
+    fun getpost(
+
+    ): Call<dto>
+
+    @GET("/searchHeartPosts/transportation?output=json")
     fun getpost1(
         @Query("keyword") keyword:String
 

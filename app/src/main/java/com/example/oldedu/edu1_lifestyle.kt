@@ -26,7 +26,7 @@ class edu1_lifestyle : AppCompatActivity() {
 
     private lateinit var binding: ActivityEdu1LifestyleBinding
     private lateinit var adapter: eduadapter
-    private lateinit var edu_lifestyle1: edu_lifestyle
+    private lateinit var Edu_lifestyle1: edu_lifestyle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class edu1_lifestyle : AppCompatActivity() {
         initview()
 
         val retrofit1 = Retrofit.Builder()
-            .baseUrl("http://34.168.110.14:8080/searchRecentPosts/")
+            .baseUrl("http://34.168.110.14:8080/searchHeartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -51,12 +51,12 @@ class edu1_lifestyle : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        edu_lifestyle1 = retrofit1.create(edu_lifestyle::class.java)
+        Edu_lifestyle1 = retrofit1.create(edu_lifestyle::class.java)
         val edu_lifestyle2 = retrofit2.create(edu_lifestyle2::class.java)
         val edu_lifestyle3 = retrofit3.create(edu_lifestyle3::class.java)
 
 
-        edu_lifestyle1.getpost1("")
+        Edu_lifestyle1.getpost1("")
             .enqueue(object : Callback<searchdto>{
                 override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
@@ -130,8 +130,7 @@ class edu1_lifestyle : AppCompatActivity() {
 
     }
     private fun search(keyword: String){
-        edu_lifestyle1.getpost1(keyword)
-
+        Edu_lifestyle1.getpost1(keyword)
             .enqueue(object : Callback<searchdto>{
                 override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){

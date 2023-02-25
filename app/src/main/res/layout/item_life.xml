@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/userIDtext"
-        android:layout_width="380dp"
-        android:layout_height="25dp"
+        android:layout_width="337dp"
+        android:layout_height="26dp"
         android:layout_marginBottom="4dp"
         android:gravity="right"
         android:maxLines="1"

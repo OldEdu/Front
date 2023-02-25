@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.databinding.ActivityEdu1EconomicBinding
@@ -20,6 +22,7 @@ class edu1_economic : AppCompatActivity() {
 
     private lateinit var binding: ActivityEdu1EconomicBinding
     private lateinit var adapter: eduadapter
+    private lateinit var Edu_economic:edu_economic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,7 @@ class edu1_economic : AppCompatActivity() {
         initview()
 
         val retrofit1 = Retrofit.Builder()
-            .baseUrl("http://34.168.110.14:8080/heartPosts/")
+            .baseUrl("http://34.168.110.14:8080/searchHeartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -44,11 +47,11 @@ class edu1_economic : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val edu_economic = retrofit1.create(edu_economic::class.java)
+        Edu_economic = retrofit1.create(edu_economic::class.java)
         val edu_economic2 = retrofit2.create(edu_economic2::class.java)
         val edu_economic3 = retrofit3.create(edu_economic3::class.java)
 
-        edu_economic.getpost1("")
+        Edu_economic.getpost1("")
             .enqueue(object : Callback<searchdto> {
                 override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
@@ -108,6 +111,31 @@ class edu1_economic : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                }
+
+            })
+        binding.searchBar.setOnKeyListener { v, keyCode, event ->
+            if(keyCode== KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN){
+                search(binding.searchBar.text.toString())
+                return@setOnKeyListener true
+            }
+
+            return@setOnKeyListener false
+        }
+    }
+    private fun search(keyword:String){
+        Edu_economic.getpost1(keyword)
+            .enqueue(object : Callback<searchdto>{
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
+                    if (!response.isSuccessful){
+                        return
+                    }
+                    adapter.submitList(response.body()?.result.orEmpty())
+
+                }
+
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
                 }
 

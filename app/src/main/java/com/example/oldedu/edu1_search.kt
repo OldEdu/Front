@@ -4,13 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.databinding.ActivityEdu1SearchBinding
+import com.example.oldedu.educated.edu_economic
 import com.example.oldedu.educated.edu_search
 import com.example.oldedu.educated.edu_search2
 import com.example.oldedu.educated.edu_search3
 import com.example.oldedu.model.dto
+import com.example.oldedu.model.searchdto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +25,7 @@ class edu1_search : AppCompatActivity() {
 
     private lateinit var binding:ActivityEdu1SearchBinding
     private lateinit var adapter: eduadapter
+    private lateinit var Edu_search: edu_search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +36,7 @@ class edu1_search : AppCompatActivity() {
         initview()
 
         val retrofit1 = Retrofit.Builder()
-            .baseUrl("http://34.168.110.14:8080/heartPosts/")
+            .baseUrl("http://34.168.110.14:8080/searchHeartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -45,13 +50,13 @@ class edu1_search : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val edu_search = retrofit1.create(edu_search::class.java)
+        Edu_search = retrofit1.create(edu_search::class.java)
         val edu_search2 = retrofit2.create(edu_search2::class.java)
         val edu_search3 = retrofit3.create(edu_search3::class.java)
 
-        edu_search.getpost()
-            .enqueue(object : Callback<dto> {
-                override fun onResponse(call: Call<dto>, response: Response<dto>) {
+        Edu_search.getpost1("")
+            .enqueue(object : Callback<searchdto> {
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
                     if (!response.isSuccessful){
                         return
                     }
@@ -65,7 +70,7 @@ class edu1_search : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<dto>, t: Throwable) {
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
                 }
 
@@ -108,6 +113,31 @@ class edu1_search : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                }
+
+            })
+        binding.searchBar.setOnKeyListener { v, keyCode, event ->
+            if(keyCode== KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN){
+                search(binding.searchBar.text.toString())
+                return@setOnKeyListener true
+            }
+
+            return@setOnKeyListener false
+        }
+    }
+    private fun search(keyword:String){
+        Edu_search.getpost1(keyword)
+            .enqueue(object : Callback<searchdto>{
+                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
+                    if (!response.isSuccessful){
+                        return
+                    }
+                    adapter.submitList(response.body()?.result.orEmpty())
+
+                }
+
+                override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
                 }
 
