@@ -18,6 +18,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        test.setOnClickListener {
+            val testIntent = Intent(this,EduImgListActivity::class.java)
+            startActivity(testIntent)
+        }
+
         btn_home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

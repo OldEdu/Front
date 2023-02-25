@@ -45,15 +45,16 @@ interface CreatePostApi {
 }
 
 class UploadEduInfoActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_edu_info)
 
         var cate:String = "transportation"
         val userID = intent.getStringExtra("userID").toString()
-        var postID:String = ""
+//        var postID:String
 
-        var cateList = listOf("transportation", "search", "banking", "life style")
+        var cateList = listOf("transportation", "search", "economic", "life style")
         var adapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,cateList)
         spinner_cate.adapter = adapter
         spinner_cate.onItemSelectedListener = object :AdapterView.OnItemSelectedListener {
@@ -66,14 +67,40 @@ class UploadEduInfoActivity : AppCompatActivity() {
 
         btn_submitPostInfo.setOnClickListener {
             val intent = Intent(this,EduImgListActivity::class.java)
+
             if (!edit_title.text.toString().isNullOrBlank()) {
                 var postData = PostData(cate, edit_title.text.toString(),userID)
-                postApi(postData)
-                intent.putExtra("postTitle",edit_title.text.toString())
-                intent.putExtra("postCate",cate)
-                intent.putExtra("userID", userID)
-                intent.putExtra("postID",postID)
-                startActivity(intent)
+//                postApi(postData)
+
+                // Retrofit API
+                val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(GsonConverterFactory.create()).build()
+                val service = retrofit.create(CreatePostApi::class.java)
+
+
+                var postID:String =""
+                service.postCreatePost(postData).enqueue(object : Callback<CreatePost>{
+                    override fun onResponse(call: Call<CreatePost>, response: Response<CreatePost>) {
+                        var result = response.body()?.postID
+                        Log.d("!!postApi result !!" , result.toString())
+                        if (result != null) {
+                            postID = result
+
+                        }
+                        Log.d("!!postApi 포스트아이디 !!" , postID)
+                        intent.putExtra("postID",postID)
+                        intent.putExtra("postTitle",edit_title.text.toString())
+                        intent.putExtra("postCate",cate)
+                        intent.putExtra("userID", userID)
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(call: Call<CreatePost>, t: Throwable) {
+                        Log.d("postApi result","Failed")
+                    }
+
+                })
+
+
             } else {
                 val build = AlertDialog.Builder(this).setTitle("There is no title")
                     .setMessage("Please Write the title")
@@ -93,6 +120,9 @@ class UploadEduInfoActivity : AppCompatActivity() {
             override fun onResponse(call: Call<CreatePost>, response: Response<CreatePost>) {
                 var result = response.body()?.postID
                 Log.d("!!postApi result !!" , result.toString())
+                if (result != null) {
+//                    postID = result
+                }
             }
 
             override fun onFailure(call: Call<CreatePost>, t: Throwable) {
@@ -100,6 +130,7 @@ class UploadEduInfoActivity : AppCompatActivity() {
             }
 
         })
+
     }
 
 }

@@ -55,12 +55,21 @@ class EduImgListActivity : AppCompatActivity() {
         var userID = intent.getStringExtra("userID")
         var postCate = intent.getStringExtra("postCate")
         var postTitle = intent.getStringExtra("postTitle")
+        if(intent.hasExtra("markedImg")) {
+            var markedImg = intent.getStringExtra("markedImg")
+        }
+
+        if (postID != null) {
+            getEduPhotoApi(postID)
+            Log.d("EduImgListActivity" , postID)
+        }
 
         btn_createImg.setOnClickListener {
             val intent = Intent(this,UploadEduImgActivity::class.java)
             intent.putExtra("postID",postID)
             startActivity(intent)
         }
+
     }
 
     private fun getEduPhotoApi(postID: String) {
@@ -73,13 +82,15 @@ class EduImgListActivity : AppCompatActivity() {
             ) {
                 if(response.isSuccessful.not()) { return }
                 response.body()?.let {
-                    Log.d("TAG!!!" , it.toString())
+                    if (it.result!=null) {
+                        it.result.forEach { (x) -> Log.d("TEST!!!",x.toString()) }
+                    } else {return@let}
 
                 }
             }
 
             override fun onFailure(call: Call<ImgListResultData>, t: Throwable) {
-
+                Log.d("API MSG","IMGLISTRESULTDATA API FAILED !")
             }
 
         })
