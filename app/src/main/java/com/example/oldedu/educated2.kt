@@ -1,6 +1,5 @@
 package com.example.oldedu
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,18 +9,13 @@ import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.adapter.txtadapter
 import com.example.oldedu.databinding.ActivityEducated2Binding
 import com.example.oldedu.educated.edu_txt
-import com.example.oldedu.model.dto
-import com.example.oldedu.model.edu
-import com.example.oldedu.model.txt
 import com.example.oldedu.model.txtdto
-import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_educated2.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 class educated2 : AppCompatActivity() {
 
@@ -33,13 +27,15 @@ class educated2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityEducated2Binding.inflate(layoutInflater)
+
         setContentView(binding.root)
-        textview()
+        initview()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/eduPhoto/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
 
         Edu_txt = retrofit.create(edu_txt::class.java)
 
@@ -66,19 +62,18 @@ class educated2 : AppCompatActivity() {
 
             })
 
-
         finishbtn.setOnClickListener({
-            val intent = Intent(this, educated3::class.java)
-            startActivity(intent)
-        })
+                val intent = Intent(this, educated3::class.java)
+                startActivity(intent)
+            })
+
 
     }
+    fun initview() {
+        adapter = txtadapter()
 
-    fun textview() {
-        val model = intent.getParcelableExtra<txt>("txtmodel")
-
-        binding.titletext.text = model?.title.orEmpty()
-        binding.txttext.text = model?.textGuide.orEmpty()
+        binding.txtlist.layoutManager = LinearLayoutManager(this)
+        binding.txtlist.adapter = adapter
     }
 
     companion object{

@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oldedu.databinding.ItemTxtBinding
+import com.example.oldedu.model.edu
 import com.example.oldedu.model.txt
 
-class txtadapter: ListAdapter<txt, txtadapter.eduItemViewHolder>(diffUtil) {
+class txtadapter : ListAdapter<txt, txtadapter.eduItemViewHolder>(diffUtil) {
     inner class eduItemViewHolder(private val binding: ItemTxtBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(txtmodel: txt){
-            binding.titletext.text = txtmodel.title
             binding.txttext.text = txtmodel.textGuide
 
         }
@@ -34,7 +34,7 @@ class txtadapter: ListAdapter<txt, txtadapter.eduItemViewHolder>(diffUtil) {
             }
 
             override fun areContentsTheSame(oldItem: txt, newItem: txt): Boolean {
-                return oldItem.title == newItem.title
+                return oldItem.textGuide == newItem.textGuide
             }
 
         }

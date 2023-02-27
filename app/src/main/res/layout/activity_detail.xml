@@ -46,7 +46,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/txtdetail"
+        android:id="@+id/txtbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="670dp"

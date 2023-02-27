@@ -7,6 +7,7 @@ import com.example.oldedu.databinding.ActivityDetailBinding
 import com.example.oldedu.model.edu
 import kotlinx.android.synthetic.main.activity_detail.*
 
+
 class detail : AppCompatActivity() {
 
     private lateinit var binding:ActivityDetailBinding
@@ -18,14 +19,15 @@ class detail : AppCompatActivity() {
 
         val model = intent.getParcelableExtra<edu>("edumodel")
 
-        binding.titletextview.text=model?.title.orEmpty()
-        binding.detailview.text=model?.postID.orEmpty()
+        binding.titletextview.text = model?.title.orEmpty()
+        binding.detailview.text = model?.postID.orEmpty()
 
 
-        txtdetail.setOnClickListener({
+        txtbtn.setOnClickListener({
             val intent = Intent(this, educated2::class.java)
             startActivity(intent)
         })
-    }
 
+
+    }
 }
