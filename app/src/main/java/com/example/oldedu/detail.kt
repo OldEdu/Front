@@ -21,6 +21,7 @@ class detail : AppCompatActivity() {
         binding.titletextview.text=model?.title.orEmpty()
         binding.detailview.text=model?.postID.orEmpty()
 
+
         txtdetail.setOnClickListener({
             val intent = Intent(this, educated2::class.java)
             startActivity(intent)

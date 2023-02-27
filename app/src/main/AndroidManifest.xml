@@ -17,14 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".mycontents"
+            android:name=".txtdetail"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".txtdetail"
+            android:name=".mycontents"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
