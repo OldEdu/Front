@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oldedu.databinding.ItemTxtBinding
-import com.example.oldedu.model.edu
 import com.example.oldedu.model.txt
 
-class txtadapter : ListAdapter<txt, txtadapter.eduItemViewHolder>(diffUtil) {
-    inner class eduItemViewHolder(private val binding: ItemTxtBinding): RecyclerView.ViewHolder(binding.root){
+class txtadapter : ListAdapter<txt, txtadapter.txtItemViewHolder>(diffUtil) {
+    inner class txtItemViewHolder(private val binding: ItemTxtBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(txtmodel: txt){
             binding.txttext.text = txtmodel.textGuide
@@ -19,11 +18,11 @@ class txtadapter : ListAdapter<txt, txtadapter.eduItemViewHolder>(diffUtil) {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): eduItemViewHolder {
-        return eduItemViewHolder(ItemTxtBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): txtItemViewHolder {
+        return txtItemViewHolder(ItemTxtBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun onBindViewHolder(holder: eduItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: txtItemViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
 

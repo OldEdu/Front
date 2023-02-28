@@ -21,7 +21,6 @@ class educated2 : AppCompatActivity() {
 
     private lateinit var binding: ActivityEducated2Binding
     private lateinit var adapter: txtadapter
-    private lateinit var Edu_txt: edu_txt
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,7 @@ class educated2 : AppCompatActivity() {
         binding = ActivityEducated2Binding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        initview()
+        txtview()
 
         val retrofit = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/eduPhoto/")
@@ -37,13 +36,14 @@ class educated2 : AppCompatActivity() {
             .build()
 
 
-        Edu_txt = retrofit.create(edu_txt::class.java)
+        val edu_txt = retrofit.create(edu_txt::class.java)
 
 
-        Edu_txt.getpost()
+        edu_txt.getpost()
             .enqueue(object : Callback<txtdto> {
                 override fun onResponse(call: Call<txtdto>, response: Response<txtdto>) {
                     if (!response.isSuccessful){
+                        Log.e(Tag, "no txt")
                         return
                     }
                     response.body()?.let{
@@ -69,7 +69,7 @@ class educated2 : AppCompatActivity() {
 
 
     }
-    fun initview() {
+    fun txtview() {
         adapter = txtadapter()
 
         binding.txtlist.layoutManager = LinearLayoutManager(this)
