@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -77,7 +78,6 @@ class detail : AppCompatActivity(), TextToSpeech.OnInitListener {
                 val data = intent.getParcelableExtra<txt>("txtmodel")
 
                 binding.voicebtn.text = data?.voiceGuide.orEmpty()
-
 
                 var speechStatus: Int = 0
                 speechStatus = textToSpeech.speak(data.toString(), TextToSpeech.QUEUE_FLUSH,null,null)

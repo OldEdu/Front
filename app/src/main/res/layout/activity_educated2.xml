@@ -7,9 +7,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/txtlist"
-        android:layout_width="414dp"
-        android:layout_height="725dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="413dp"
+        android:layout_height="542dp"
+        android:layout_marginBottom="192dp"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
