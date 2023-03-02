@@ -75,30 +75,30 @@
 
         <Button
             android:id="@+id/heartbtn"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:text="heart"
+            android:layout_marginStart="80dp"
+            android:text="like"
             android:textColor="#ffffff"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:backgroundTint="#2A3F8D"/>
 
 
         <Button
-            android:layout_width="60dp"
-            android:layout_height="60dp"
             android:id="@+id/scrapbtn"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:textSize="15dp"
-            android:textColor="#ffffff"
+            android:backgroundTint="#2A3F8D"
             android:text="scrap"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:layout_marginLeft="50dp"
             />
 
 
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -8,13 +8,13 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface edu_txt {
-    @GET("/eduPhoto/{postID}?output=json")
+    @GET("/eduPhoto/1tSrMCXH6ZvtThzoRu12")
     fun getpost(
 
 
     ): Call<txtdto>
 
-    @GET("/eduPhoto/{postiID}?output=json")
+    @GET("/eduPhoto/1tSrMCXH6ZvtThzoRu12")
     fun getpost1(
 
     ): Call<voicedto>
