@@ -14,6 +14,9 @@ class eduadapter(private var itemClickedListener: (edu)->Unit): ListAdapter<edu,
         fun bind(edumodel:edu){
             binding.titletext.text = edumodel.title
             binding.userIDtext.text = edumodel.userName
+            binding.heartcount.text = edumodel.heart.toString()
+            binding.viewcount.text = edumodel.views.toString()
+            binding.commentcount.text = edumodel.comment.toString()
 
             binding.root.setOnClickListener{
                 itemClickedListener(edumodel)
