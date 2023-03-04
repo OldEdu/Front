@@ -37,13 +37,13 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btn_submit"
+            android:id="@+id/btn_Comment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="DONE"
+            android:text="Comment"
             android:textColor="#ffffff"
             android:textSize="15dp" />
 
