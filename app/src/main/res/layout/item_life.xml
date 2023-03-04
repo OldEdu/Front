@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/titletext"
         android:layout_width="400dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:lines="1"
         android:text="제목제목제목"
         android:textSize="20dp"
@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/userIDtext"
-        android:layout_width="337dp"
-        android:layout_height="26dp"
+        android:layout_width="180dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="4dp"
         android:gravity="right"
         android:maxLines="1"
@@ -28,6 +28,94 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/hearttext"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="30dp"
+        android:text="Heart"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/heartcount"
+        android:layout_width="360dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="30dp"
+        android:text="heart"
+        android:gravity="left"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/viewtext"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="30dp"
+        android:text="View"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/viewcount"
+        android:layout_width="265dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="30dp"
+        android:text="view"
+        android:gravity="left"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/commenttext"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="Comment"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titletext" />
+
+    <TextView
+        android:id="@+id/commentcount"
+        android:layout_width="335dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="4dp"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="comment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/titletext"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titletext" />
 
