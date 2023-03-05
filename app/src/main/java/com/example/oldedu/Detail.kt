@@ -56,7 +56,10 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
         binding.textGuideBtn.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, TextGuideActivity::class.java)
 
+            intent.putExtra("textGuide", eduPhotoList[currentPosition].textGuide)
+            startActivity(intent)
         })
         binding.voiceGuideBtn.setOnClickListener{
             //tts 설정

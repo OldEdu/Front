@@ -45,6 +45,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".TextGuideActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".edu1_search"
             android:exported="false"
             android:label="@string/title_activity_edu1_search"
