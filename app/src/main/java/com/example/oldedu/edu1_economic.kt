@@ -143,7 +143,7 @@ class edu1_economic : AppCompatActivity() {
     }
     fun initview(){
         adapter = eduadapter(itemClickedListener = {
-            val intent = Intent(this, detail::class.java)
+            val intent = Intent(this, Detail::class.java)
             intent.putExtra("edumodel",it)
             startActivity(intent)
         })

@@ -18,7 +18,7 @@ class CatActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        back.setOnClickListener({
+        btn_back.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })

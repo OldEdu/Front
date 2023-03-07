@@ -40,7 +40,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".detail"
+            android:name=".Detail"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TextGuideActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

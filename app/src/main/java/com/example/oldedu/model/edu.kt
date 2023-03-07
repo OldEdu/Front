@@ -11,7 +11,8 @@ data class edu (
     @SerializedName("category") val category: String,
     @SerializedName("heart") val heart: Int,
     @SerializedName("views") val views: Int,
-    @SerializedName ("postID")  val postID: String
+    @SerializedName ("postID")  val postID: String,
+    @SerializedName("comment") val comment:Int
 
 
     ): Parcelable
