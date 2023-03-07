@@ -52,6 +52,10 @@
         android:id="@+id/recView_eduImgList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/edu_img_item_recyclerview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +88,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView_imgList"
         app:layout_constraintVertical_bias="0.895" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
