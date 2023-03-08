@@ -112,7 +112,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".educated3"
+            android:name=".Educated3"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
