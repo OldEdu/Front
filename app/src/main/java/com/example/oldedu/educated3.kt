@@ -15,7 +15,7 @@ class educated3 : AppCompatActivity() {
             startActivity(intent)
         })
 
-        back.setOnClickListener({
+        back_btn.setOnClickListener({
             val intent = Intent(this, educated2::class.java)
             startActivity(intent)
         })

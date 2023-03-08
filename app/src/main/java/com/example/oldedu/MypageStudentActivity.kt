@@ -9,7 +9,7 @@ import androidx.annotation.Keep
 //import android.telecom.Call
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.activity_mypage_student.back
+import kotlinx.android.synthetic.main.activity_mypage_student.back_btn
 import kotlinx.android.synthetic.main.activity_mypage_student.btn_home
 import retrofit2.Retrofit
 import retrofit2.Call
@@ -55,7 +55,7 @@ class MypageStudentActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        back.setOnClickListener({
+        back_btn.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })

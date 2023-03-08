@@ -16,7 +16,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_mypage_student.*
 import kotlinx.android.synthetic.main.activity_signup.*
-import kotlinx.android.synthetic.main.activity_signup.back
+import kotlinx.android.synthetic.main.activity_signup.back_btn
 import kotlinx.android.synthetic.main.activity_signup.btn_home
 import retrofit2.Call
 import retrofit2.Callback
@@ -82,7 +82,7 @@ class SignupActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        back.setOnClickListener({
+        back_btn.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })
