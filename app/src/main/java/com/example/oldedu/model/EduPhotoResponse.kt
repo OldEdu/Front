@@ -9,5 +9,5 @@ data class EduPhotoResponse(
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("result")
-    val eduPhotoList: ArrayList<EduPhotoList>
+    val eduPhotoList: ArrayList<EduPhoto>
 )

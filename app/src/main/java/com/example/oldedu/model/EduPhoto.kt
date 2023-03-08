@@ -1,9 +1,8 @@
 package com.example.oldedu.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class EduPhotoList(
+data class EduPhoto(
         @SerializedName("imgUrl")
         val imgUrl: String?,
         @SerializedName("eduPhotoID")

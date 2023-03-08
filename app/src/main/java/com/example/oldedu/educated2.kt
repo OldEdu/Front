@@ -63,7 +63,7 @@ class educated2 : AppCompatActivity() {
             })
 
         finishbtn.setOnClickListener({
-                val intent = Intent(this, educated3::class.java)
+                val intent = Intent(this, Educated3::class.java)
                 startActivity(intent)
             })
 

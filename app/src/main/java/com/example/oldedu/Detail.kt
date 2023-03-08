@@ -19,10 +19,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.oldedu.databinding.ActivityDetailBinding
-import com.example.oldedu.model.EduPhotoList
-import com.example.oldedu.model.EduPhotoResponse
-import com.example.oldedu.model.edu
-import com.example.oldedu.model.txt
+import com.example.oldedu.model.*
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.util.*
@@ -37,10 +34,10 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val binding get() = mBinding!!
 
     private var currentPosition:Int = 0;
-    companion object{
-        var requestQueue: RequestQueue?= null
-        lateinit var eduPhotoList:ArrayList<EduPhotoList>
-    }
+
+    var requestQueue: RequestQueue?= null
+    lateinit var eduPhotoList:ArrayList<EduPhoto>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +47,15 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         val model = intent.getParcelableExtra<edu>("edumodel")
 
-        binding.titleTextView.text = model?.title.orEmpty()
+        val title = model?.title.orEmpty()
+        val postId= model?.postID.orEmpty()
+        val category = model?.category.orEmpty()
+        val heartNum = model?.heart
+        val scrapNum = model?.scrap
 
-        requestEduPhotoList(model?.postID.orEmpty());
+        binding.titleTextView.text = title
 
+        requestEduPhotoList(model?.postID.orEmpty()); //교욱 사진 불러오기
 
         binding.textGuideBtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, TextGuideActivity::class.java)
@@ -78,9 +80,14 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //채팅 버튼 clickListener
         binding.btnComment.setOnClickListener{
-            val intent = Intent(this,educated3::class.java)
+            val intent = Intent(this,Educated3::class.java)
 
-            intent.putExtra("postID", model?.postID.orEmpty()) //채팅 액티비티에 postID 값 넘겨줌
+            intent.putExtra("postID",postId ) //댓글 액티비티에 postID 값 넘겨줌
+            intent.putExtra("title",  title) //댓글 액티비티에 title 값 넘겨줌
+            intent.putExtra("category",category)//댓글 액티비티에 category 값 넘겨줌
+            intent.putExtra("heartNum",heartNum.toString())//댓글 액티비티에 heartNum 값 넘겨줌
+            intent.putExtra("scrapNum",scrapNum.toString())//댓글 액티비티에 scrapNum 값 넘겨줌
+
             startActivity(intent)
         }
 
