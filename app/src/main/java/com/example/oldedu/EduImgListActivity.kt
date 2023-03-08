@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Keep
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.oldedu.adapter.EduImgListRecyclerAdapter
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_edu_img_list.*
 import retrofit2.Call
@@ -31,6 +33,9 @@ data class ImgItemData(
 
     @SerializedName("textGuide")
     val textGuide: String,
+
+    @SerializedName("imgNum")
+    val imgNum: Number,
 )
 
 data class ImgListResultData (
@@ -47,6 +52,7 @@ interface ImgListApi {
 }
 
 class EduImgListActivity : AppCompatActivity() {
+//    private lateinit var mAdapter: EduImgListRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edu_img_list)
@@ -70,6 +76,18 @@ class EduImgListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btn_registerPost.setOnClickListener{
+            val intent = Intent(this,MypageTeacherActivity::class.java)
+            intent.putExtra("userID",userID)
+            startActivity(intent)
+        }
+
+    }
+
+    private fun setAdapter(photoList : List<ImgItemData>){
+        val mAdapter = EduImgListRecyclerAdapter(photoList,this)
+        recView_eduImgList.adapter = mAdapter
+        recView_eduImgList.layoutManager = LinearLayoutManager(this)
     }
 
     private fun getEduPhotoApi(postID: String) {
@@ -81,16 +99,18 @@ class EduImgListActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ImgListResultData>, response: Response<ImgListResultData>
             ) {
                 if(response.isSuccessful.not()) { return }
-                response.body()?.let {
-                    if (it.result!=null) {
-                        it.result.forEach { (x) -> Log.d("TEST!!!",x.toString()) }
-                    } else {return@let}
+                if(!response.body()?.result.isNullOrEmpty()) {
+                    response.body()?.let {
 
+                        Log.d("%% 이미지리스트 결과 데이터" , it.result.toString())
+                        setAdapter(it.result)
+
+                    }
                 }
             }
 
             override fun onFailure(call: Call<ImgListResultData>, t: Throwable) {
-                Log.d("API MSG","IMGLISTRESULTDATA API FAILED !")
+                Log.d("API MSG",t.message.toString())
             }
 
         })

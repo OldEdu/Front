@@ -77,12 +77,12 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         //채팅 버튼 clickListener
-//        binding.btnComment.setOnClickListener{
-//            val intent = Intent(this,{여기다가 나은이가 만든 채팅 액티비티}::class.java)
-//
-//            intent.putExtra("postID", model?.postID.orEmpty()) //채팅 액티비티에 postID 값 넘겨줌
-//            startActivity(intent)
-//        }
+        binding.btnComment.setOnClickListener{
+            val intent = Intent(this,educated3::class.java)
+
+            intent.putExtra("postID", model?.postID.orEmpty()) //채팅 액티비티에 postID 값 넘겨줌
+            startActivity(intent)
+        }
 
 
     }

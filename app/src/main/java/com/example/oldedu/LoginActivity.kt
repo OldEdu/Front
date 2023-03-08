@@ -1,10 +1,12 @@
 package com.example.oldedu
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import com.bumptech.glide.Glide
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.android.synthetic.main.activity_login.*
@@ -18,10 +20,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        test.setOnClickListener {
-            val testIntent = Intent(this,EduImgListActivity::class.java)
-            startActivity(testIntent)
-        }
+//        test.setOnClickListener {
+//            val testIntent = Intent(this,EduImgListActivity::class.java)
+//            startActivity(testIntent)
+//        }
+
+//        Glide.with(this)
+//            .load("https://firebasestorage.googleapis.com/v0/b/oldedu-c93f3.appspot.com/o/images%2F1677952570720.png?alt=media&token=60c6cbb1-461d-4f4d-b2bf-2cbd1d77c529")
+//            .into(imgtest)
 
         btn_home.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)

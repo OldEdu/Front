@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OldEdu"
         android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
+
         <activity
             android:name=".text"
             android:exported="false">
