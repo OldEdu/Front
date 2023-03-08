@@ -1,28 +1,22 @@
 package com.example.oldedu
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.BounceInterpolator
+import android.view.animation.ScaleAnimation
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.oldedu.adapter.CommentAdapter
-import com.example.oldedu.databinding.ActivityDetailBinding
 import com.example.oldedu.databinding.ActivityEducated3Binding
 import com.example.oldedu.model.Comment
 import com.example.oldedu.model.CommentResponse
-import com.example.oldedu.model.EduPhoto
-import com.example.oldedu.model.EduPhotoResponse
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.activity_add_edu_img.*
-import kotlinx.android.synthetic.main.activity_detail.*
-import java.util.ArrayList
+
 
 class Educated3 : AppCompatActivity() {
     // 전역 변수로 바인딩 객체 선언
@@ -33,6 +27,9 @@ class Educated3 : AppCompatActivity() {
 
     var requestQueue: RequestQueue?= null
     lateinit var commentList: ArrayList<Comment>
+    var scaleAnimation: ScaleAnimation? = null
+    var bounceInterpolator //애니메이션이 일어나는 동안의 회수, 속도를 조절하거나 시작과 종료시의 효과를 추가 할 수 있다
+            : BounceInterpolator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +51,27 @@ class Educated3 : AppCompatActivity() {
         binding.heartNumTextView.text=heartNum
         binding.scrapNumTextView.text=scrapNum
 
+        scaleAnimation = ScaleAnimation(
+            0.7f,
+            1.0f,
+            0.7f,
+            1.0f,
+            Animation.RELATIVE_TO_SELF,
+            0.7f,
+            Animation.RELATIVE_TO_SELF,
+            0.7f
+        )
 
-        back_btn.setOnClickListener{
-            val intent = Intent(this, educated2::class.java)
-            startActivity(intent)
+        scaleAnimation!!.duration = 500
+        bounceInterpolator = BounceInterpolator()
+        scaleAnimation!!.interpolator = bounceInterpolator
+
+        binding.buttonFavorite.setOnCheckedChangeListener { compoundButton, isChecked ->
+            compoundButton.startAnimation(scaleAnimation)
+        }
+
+        binding.buttonScrap.setOnCheckedChangeListener { compoundButton, isChecked ->
+            compoundButton.startAnimation(scaleAnimation)
         }
 
         requestCommentList(postID.orEmpty());
