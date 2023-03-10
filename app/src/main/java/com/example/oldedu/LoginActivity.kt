@@ -16,6 +16,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
+    companion object {
+        var userID:String=""
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -54,9 +58,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         fun moveToMyPage(type : Boolean?, userID : String) {
-
+            LoginActivity.userID=userID
             if (type==true) { // 학생일 경우
-                val intent = Intent(this, MypageStudentActivity::class.java)
+                val intent = Intent(this, CatActivity::class.java)
                 intent.putExtra("userID", userID)
                 startActivity(intent)
             } else { // 선생님일 경우

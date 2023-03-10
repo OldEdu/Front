@@ -56,7 +56,10 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.titleTextView.text = title
 
         requestEduPhotoList(model?.postID.orEmpty()); //교욱 사진 불러오기
-
+        binding.btnBack.setOnClickListener{
+            val intent = Intent(this, educated2::class.java)
+            startActivity(intent)
+        }
         binding.textGuideBtn.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, TextGuideActivity::class.java)
 
@@ -75,7 +78,7 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         binding.btnBack.setOnClickListener{
-
+            finish()
         }
 
         //채팅 버튼 clickListener
