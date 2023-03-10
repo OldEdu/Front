@@ -211,7 +211,7 @@ class UploadEduMarkActivity : AppCompatActivity() {
 
                 var imgTime = System.currentTimeMillis()
                 var uploadTask = Firebase.storage.reference
-                    .child("/images/${imgTime}.png")
+                    .child("/images/${postID}_${imgTime}.png")
                     .putStream(stream)
 
                 Log.d("###imgTime" , imgTime.toString())

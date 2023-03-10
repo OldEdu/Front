@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingRight="20dp"
     android:paddingLeft="20dp"
-    android:layout_marginTop="30dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageView
@@ -19,17 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="140dp">
 
-        <TextView
-            android:id="@+id/text_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="1"/>
+
         <TextView
             android:id="@+id/text_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="2"
+            android:maxLines="3"
             android:ellipsize="end"
             android:text="화면 음성안내 텍스트 화면 음성안내 텍스트 화면 음성안내 텍스트 화면 음성안내 텍스트 화면 음성안내..."
             />
