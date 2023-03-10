@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Keep
+import com.example.oldedu.LoginActivity.Companion.userID
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -66,6 +67,7 @@ class MypageTeacherActivity : AppCompatActivity() {
 
         btn_myContents.setOnClickListener({
             val intent = Intent(this,mycontents::class.java)
+            intent.putExtra("userID",userID)
             startActivity(intent)
         })
 
