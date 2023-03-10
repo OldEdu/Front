@@ -90,8 +90,7 @@ class Educated3 : AppCompatActivity() {
             //응답
             {
                 //정상응답일때
-                //Log.d("success:","응답->$it")
-                processResponse(it)
+                //Log.d("success:","응답->$it")                processResponse(it)
             },
             {
                 //에러일때

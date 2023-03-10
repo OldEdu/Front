@@ -64,6 +64,11 @@ class MypageTeacherActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        btn_myContents.setOnClickListener({
+            val intent = Intent(this,mycontents::class.java)
+            startActivity(intent)
+        })
+
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(
             GsonConverterFactory.create()).build()
