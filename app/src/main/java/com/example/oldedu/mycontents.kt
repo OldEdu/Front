@@ -40,6 +40,8 @@ class mycontents : AppCompatActivity() {
 
         binding.TitleTextView.text=title
 
+        requestContentsList(userID.orEmpty());
+
     }
 
     private fun requestContentsList(userID:String){
@@ -79,8 +81,8 @@ class mycontents : AppCompatActivity() {
         contentsList = contentsResponse.contentsList;
 
 
-        binding.rvComment.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        binding.rvComment.setHasFixedSize(true)
-        binding.rvComment.adapter = ContentsAdapter(contentsList)
+        binding.rvContents.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        binding.rvContents.setHasFixedSize(true)
+        binding.rvContents.adapter = ContentsAdapter(contentsList)
     }
 }
