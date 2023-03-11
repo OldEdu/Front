@@ -200,6 +200,8 @@ class Educated3 : AppCompatActivity() {
             }
             else{
                 sendComment(postID.orEmpty(),LoginActivity.userID, commentContent)
+                binding.commentEditText.text=null
+
             }
         }
 
@@ -232,6 +234,7 @@ class Educated3 : AppCompatActivity() {
         request.setShouldCache(false)
         //큐가알아서 요청을 보내고 응답을 받는다
         requestQueue?.add(request)
+        requestCommentList(postID)
     }
     private fun requestUpHeart(postID:String){
 
