@@ -33,12 +33,10 @@ class EduImgListRecyclerAdapter(val postList : List<ImgItemData>, val context : 
     class ViewHolder (itemView : View?) : RecyclerView.ViewHolder(itemView!!) {
         //        val storageReference = Firebase.storage.reference
         val img = itemView?.findViewById<ImageView>(R.id.imgView_thumbnail)
-        val num = itemView?.findViewById<TextView>(R.id.text_num)
         val textContent = itemView?.findViewById<TextView>(R.id.text_content)
 //        val btnUrl = itemView?.findViewById<TextView>(R.id.btn_mod)
 
         fun bind (item : ImgItemData?, context: Context) {
-            num?.text = item?.imgNum.toString()
             textContent?.text = item?.textGuide
             if (item != null) {
                 Log.d("photo---" , item.imgUrl)
