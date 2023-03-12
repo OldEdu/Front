@@ -22,7 +22,6 @@ import com.example.oldedu.model.Comment
 import com.example.oldedu.model.CommentResponse
 import com.example.oldedu.model.edu
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.item_life.*
 
 
 class Educated3 : AppCompatActivity() {
@@ -39,6 +38,13 @@ class Educated3 : AppCompatActivity() {
     var bounceInterpolator //애니메이션이 일어나는 동안의 회수, 속도를 조절하거나 시작과 종료시의 효과를 추가 할 수 있다
             : BounceInterpolator? = null
 
+
+    var postID:String? =""
+    var title :String?=""
+    var category:String?=""
+    var scrapNum:String?=""
+    var heartNum:String?=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_educated3)
@@ -48,11 +54,11 @@ class Educated3 : AppCompatActivity() {
 
         requestQueue = Volley.newRequestQueue(applicationContext)
 
-        val postID = intent.getStringExtra("postID")
-        val title = intent.getStringExtra("title")
-        val category=intent.getStringExtra("category")
-        val scrapNum=intent.getStringExtra("scrapNum")
-        val heartNum=intent.getStringExtra("heartNum")
+        postID = intent.getStringExtra("postID")
+        title = intent.getStringExtra("title")
+        category=intent.getStringExtra("category")
+        scrapNum=intent.getStringExtra("scrapNum")
+        heartNum=intent.getStringExtra("heartNum")
 
         binding.TitleTextView.text=title
         binding.categoryTextView.text=category
@@ -87,8 +93,8 @@ class Educated3 : AppCompatActivity() {
 
         requestCommentList(postID.orEmpty());
 
+        //게시물 하트 수 올리기 기능
         binding.buttonFavorite.setOnCheckedChangeListener { compoundButton, isChecked ->
-
             if (LoginActivity.userID=="" ){   //로그인 하지 않았을 경우
                 binding.buttonFavorite.isChecked=false
                 val builder = AlertDialog.Builder(this)
@@ -108,21 +114,61 @@ class Educated3 : AppCompatActivity() {
             else{
                 compoundButton.startAnimation(scaleAnimation)
                 if (postID != null) {
-                    requestUpHeart(postID)
+                    requestUpHeart(postID.orEmpty())
                     heartChanged=true
                 }
             }
 
 
         }
-
+        //게시물 스크랩 기능
         binding.buttonScrap.setOnCheckedChangeListener { compoundButton, isChecked ->
-            compoundButton.startAnimation(scaleAnimation)
+            if (LoginActivity.userID=="" ){   //로그인 하지 않았을 경우
+                binding.buttonScrap.isChecked=false
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Please login and Save post.")
+                    .setMessage("Do you want to login?")
+                    .setPositiveButton("yes",
+                        DialogInterface.OnClickListener{dialog, id->
+                            val intent = Intent(this, LoginActivity::class.java)
+                            startActivity(intent)})
+                    .setNegativeButton("no",
+                        DialogInterface.OnClickListener { dialog, id ->
+
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
+            }
+
+
+            else if (LoginActivity.userType==false ){   //선생님으로 로그인 했을 경우
+                binding.buttonScrap.isChecked=false
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Only students can do the scraps.") //학생만 스크랩 할 수 있다고 안내
+                    .setPositiveButton("OK",
+                        DialogInterface.OnClickListener { dialog, id ->
+                        })
+                // 다이얼로그를 띄워주기
+                builder.show()
+            }
+            else if(!binding.buttonScrap.isChecked){
+                compoundButton.startAnimation(scaleAnimation)
+                if (postID != null) {
+                    requestSavePost(postID.orEmpty(),LoginActivity.userID)
+                }
+            }
+            else if(binding.buttonScrap.isChecked){
+                compoundButton.startAnimation(scaleAnimation)
+                if (postID != null) {
+                    //TODO
+                //requestSaveCancelPost(postID.orEmpty(),LoginActivity.userID)
+                }
+            }
         }
 
 
 
-
+        //댓글 작성하기 기능
         binding.commentSendButton.setOnClickListener{
             val commentContent=binding.commentEditText.text.toString()
             if (LoginActivity.userID=="" ){   //로그인 하지 않았을 경우
@@ -146,7 +192,7 @@ class Educated3 : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Please enter your comment")
                     .setMessage("Enter at least 10 characters")
-                    .setPositiveButton("yes",
+                    .setPositiveButton("OK",
                         DialogInterface.OnClickListener{dialog, id->
                            })
                 // 다이얼로그를 띄워주기
@@ -154,6 +200,8 @@ class Educated3 : AppCompatActivity() {
             }
             else{
                 sendComment(postID.orEmpty(),LoginActivity.userID, commentContent)
+                binding.commentEditText.text=null
+
             }
         }
 
@@ -186,6 +234,7 @@ class Educated3 : AppCompatActivity() {
         request.setShouldCache(false)
         //큐가알아서 요청을 보내고 응답을 받는다
         requestQueue?.add(request)
+        requestCommentList(postID)
     }
     private fun requestUpHeart(postID:String){
 
@@ -221,6 +270,41 @@ class Educated3 : AppCompatActivity() {
         requestQueue?.add(request)
 
     }
+
+    private fun requestSavePost(postID:String,userID:String){
+
+        val url="http://34.168.110.14:8080/scrap"
+        //요청 객체만들기
+        // 2. Request Obejct인 StringRequest 생성
+        val request = object : StringRequest(Method.POST, url,
+            Response.Listener { response ->
+                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show()
+                val scrapInt=(scrapNum?.toInt())
+                if (scrapInt != null) {
+                    binding.scrapNumTextView.text=(scrapInt+1).toString()
+                }
+                              },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["postID"] = postID
+                params["userID"] = userID
+
+                return params
+            }
+
+        }
+        //실시간으로 보고싶을때 false로 해준다
+        request.setShouldCache(false)
+        //큐가알아서 요청을 보내고 응답을 받는다
+        requestQueue?.add(request)
+
+    }
+
+
     private fun requestCommentList(postID:String){
 
         val url="http://34.168.110.14:8080/commentListPost/${postID}"
@@ -267,7 +351,6 @@ class Educated3 : AppCompatActivity() {
         val eduPostResponse = gson.fromJson(response, edu::class.java)
         eduPost=eduPostResponse
         binding.heartNumTextView.text=eduPostResponse.heart.toString()
-
     }
 
 
