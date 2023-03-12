@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         var userID:String=""
+        var userType:Boolean?=true
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +60,8 @@ class LoginActivity : AppCompatActivity() {
         }
         fun moveToMyPage(type : Boolean?, userID : String) {
             LoginActivity.userID=userID
+            userType = type
+
             if (type==true) { // 학생일 경우
                 val intent = Intent(this, CatActivity::class.java)
                 intent.putExtra("userID", userID)
@@ -83,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                     var dialog = AlertDialog.Builder(this@LoginActivity)
                     if (login?.success==true) {
 //                        dialog.setMessage("로그인 성공!")
-                        moveToMyPage(login?.userType, id)
+                        moveToMyPage(login.userType, id)
                     } else {
                     Log.d("LOGIN","success : "+login?.success.toString())
                     Log.d("LOGIN","msg : "+login?.msg)
