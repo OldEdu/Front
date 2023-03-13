@@ -8,12 +8,8 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.oldedu.adapter.CommentAdapter
 import com.example.oldedu.adapter.ContentsAdapter
 import com.example.oldedu.databinding.ActivityMycontentsBinding
-import com.example.oldedu.databinding.MycontentsitemBinding
-import com.example.oldedu.model.Comment
-import com.example.oldedu.model.CommentResponse
 import com.example.oldedu.model.Mycontents
 import com.example.oldedu.model.MycontentsResponse
 import com.google.gson.Gson
@@ -37,10 +33,12 @@ class mycontents : AppCompatActivity() {
         requestQueue = Volley.newRequestQueue(applicationContext)
         val userID = intent.getStringExtra("userID")
         val title = intent.getStringExtra("title")
+        val postID = intent.getStringExtra("postID")
 
-        binding.TitleTextView.text=title
 
         requestContentsList(userID.orEmpty());
+        requestContentsList(postID.orEmpty());
+
 
     }
 
@@ -56,6 +54,8 @@ class mycontents : AppCompatActivity() {
                 //정상응답일때
                 //Log.d("success:","응답->$it")
                 processResponse(it)
+
+
             },
             {
                 //에러일때
@@ -81,8 +81,12 @@ class mycontents : AppCompatActivity() {
         contentsList = contentsResponse.contentsList;
 
 
+
         binding.rvContents.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         binding.rvContents.setHasFixedSize(true)
         binding.rvContents.adapter = ContentsAdapter(contentsList)
+
+
     }
+
 }

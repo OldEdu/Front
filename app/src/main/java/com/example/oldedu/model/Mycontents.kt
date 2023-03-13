@@ -7,7 +7,10 @@ data class Mycontents (
     val userID:String,
 
     @SerializedName("title")
-    val title:String
+    val title:String,
+
+    @SerializedName("postID")
+    val postID:String
 
 
         )
