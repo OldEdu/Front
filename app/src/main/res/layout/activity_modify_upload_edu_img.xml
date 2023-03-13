@@ -8,11 +8,11 @@
     tools:context=".UploadEduImgActivity">
 
     <Button
-        android:id="@+id/btn_addImg"
+        android:id="@+id/btn_changeImg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="add a image"
+        android:text="change a image"
         />
     <Button
         android:id="@+id/btn_deleteImg"
@@ -44,12 +44,12 @@
 
 
         <Button
-            android:id="@+id/btn_createPost"
+            android:id="@+id/btn_modifyPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:padding="10dp"
-            android:text="Create a Post" />
+            android:text="Modify Post" />
 
         <Button
             android:id="@+id/btn_returnList"

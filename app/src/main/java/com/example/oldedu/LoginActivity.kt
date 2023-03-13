@@ -1,12 +1,10 @@
 package com.example.oldedu
-
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
-import com.bumptech.glide.Glide
+import com.example.oldedu.modifyPhoto.ModifyUploadEduImgActivity
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,7 +24,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 //        test.setOnClickListener {
-//            val testIntent = Intent(this,EduImgListActivity::class.java)
+//            val testIntent = Intent(this,ModifyUploadEduImgActivity::class.java)
+//            intent.putExtra("eduPhotoID" , "hYUdhWYPlgIgMuCcqlKI")
 //            startActivity(testIntent)
 //        }
 
