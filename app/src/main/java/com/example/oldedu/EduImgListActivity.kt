@@ -67,7 +67,6 @@ class EduImgListActivity : AppCompatActivity() {
 
         if (postID != null) {
             getEduPhotoApi(postID)
-            Log.d("EduImgListActivity" , postID)
         }
 
         btn_createImg.setOnClickListener {
@@ -102,7 +101,6 @@ class EduImgListActivity : AppCompatActivity() {
                 if(!response.body()?.result.isNullOrEmpty()) {
                     response.body()?.let {
 
-                        Log.d("%% 이미지리스트 결과 데이터" , it.result.toString())
                         setAdapter(it.result)
 
                     }
