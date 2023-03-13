@@ -32,11 +32,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="3"
+            android:ellipsize="end"
             android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
-            android:text="Educated"
             android:maxLines="1"
-            android:ellipsize="end"
+            android:text="Educated"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="24sp" />
@@ -101,6 +101,18 @@
             android:background="@color/mainColor"
             android:fontFamily="@font/notosanskr_medium"
             android:text="TEXT\nGUIDE"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/commentGoBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/mainColor"
+            android:fontFamily="@font/notosanskr_medium"
+            android:text="View\ncomment"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>

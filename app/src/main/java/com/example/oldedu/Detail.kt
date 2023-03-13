@@ -94,6 +94,19 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
             startActivity(intent)
         }
 
+        //채팅 버튼 clickListener
+        binding.commentGoBtn.setOnClickListener{
+            val intent = Intent(this,Educated3::class.java)
+
+            intent.putExtra("postID",postId ) //댓글 액티비티에 postID 값 넘겨줌
+            intent.putExtra("title",  title) //댓글 액티비티에 title 값 넘겨줌
+            intent.putExtra("category",category)//댓글 액티비티에 category 값 넘겨줌
+            intent.putExtra("heartNum",heartNum.toString())//댓글 액티비티에 heartNum 값 넘겨줌
+            intent.putExtra("scrapNum",scrapNum.toString())//댓글 액티비티에 scrapNum 값 넘겨줌
+
+            startActivity(intent)
+        }
+
 
     }
 
