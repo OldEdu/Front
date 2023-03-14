@@ -9,7 +9,6 @@ import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.databinding.ActivityEdu1SearchBinding
-import com.example.oldedu.educated.edu_economic
 import com.example.oldedu.educated.edu_search
 import com.example.oldedu.educated.edu_search2
 import com.example.oldedu.educated.edu_search3
@@ -24,15 +23,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class edu1_search : AppCompatActivity() {
 
-    private lateinit var binding:ActivityEdu1SearchBinding
+    private lateinit var binding: ActivityEdu1SearchBinding
     private lateinit var adapter: eduadapter
     private lateinit var Edu_search: edu_search
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityEdu1SearchBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
 
         initview()
 
