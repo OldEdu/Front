@@ -12,6 +12,7 @@ import com.example.oldedu.databinding.ActivityEdu1EconomicBinding
 import com.example.oldedu.educated.*
 import com.example.oldedu.model.dto
 import com.example.oldedu.model.searchdto
+import kotlinx.android.synthetic.main.activity_edu1_economic.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,49 +52,78 @@ class edu1_economic : AppCompatActivity() {
         val edu_economic2 = retrofit2.create(edu_economic2::class.java)
         val edu_economic3 = retrofit3.create(edu_economic3::class.java)
 
-        Edu_economic.getpost1("")
-            .enqueue(object : Callback<searchdto> {
-                override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
-                    if (!response.isSuccessful){
-                        return
-                    }
-                    response.body()?.let{
-                        Log.d(Tag,it.toString())
-
-                        it.result.forEach{edu->
-                            Log.d(Tag,edu.toString())
+        heartbtn.setOnClickListener{
+            Edu_economic.getpost1("")
+                .enqueue(object : Callback<searchdto> {
+                    override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
+                        if (!response.isSuccessful){
+                            return
                         }
-                        adapter.submitList(it.result)
-                    }
-                }
+                        response.body()?.let{
+                            Log.d(Tag,it.toString())
 
-                override fun onFailure(call: Call<searchdto>, t: Throwable) {
-
-                }
-
-            })
-        edu_economic2.getpost()
-            .enqueue(object : Callback<dto> {
-                override fun onResponse(call: Call<dto>, response: Response<dto>) {
-                    if (!response.isSuccessful){
-                        return
-                    }
-                    response.body()?.let{
-                        Log.d(Tag,it.toString())
-
-                        it.result.forEach{edu->
-                            Log.d(Tag,edu.toString())
+                            it.result.forEach{edu->
+                                Log.d(Tag,edu.toString())
+                            }
+                            adapter.submitList(it.result)
                         }
-                        adapter.submitList(it.result)
                     }
-                }
 
-                override fun onFailure(call: Call<dto>, t: Throwable) {
+                    override fun onFailure(call: Call<searchdto>, t: Throwable) {
 
-                }
+                    }
 
-            })
+                })
+        }
 
+        viewbtn.setOnClickListener{
+            edu_economic2.getpost()
+                .enqueue(object : Callback<dto> {
+                    override fun onResponse(call: Call<dto>, response: Response<dto>) {
+                        if (!response.isSuccessful){
+                            return
+                        }
+                        response.body()?.let{
+                            Log.d(Tag,it.toString())
+
+                            it.result.forEach{edu->
+                                Log.d(Tag,edu.toString())
+                            }
+                            adapter.submitList(it.result)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                    }
+
+                })
+        }
+
+
+        recentbtn.setOnClickListener{
+            edu_economic3.getpost()
+                .enqueue(object : Callback<dto> {
+                    override fun onResponse(call: Call<dto>, response: Response<dto>) {
+                        if (!response.isSuccessful){
+                            return
+                        }
+                        response.body()?.let{
+                            Log.d(Tag,it.toString())
+
+                            it.result.forEach{edu->
+                                Log.d(Tag,edu.toString())
+                            }
+                            adapter.submitList(it.result)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<dto>, t: Throwable) {
+
+                    }
+
+                })
+        }
         edu_economic3.getpost()
             .enqueue(object : Callback<dto> {
                 override fun onResponse(call: Call<dto>, response: Response<dto>) {
@@ -115,6 +145,7 @@ class edu1_economic : AppCompatActivity() {
                 }
 
             })
+
         binding.searchBar.setOnKeyListener { v, keyCode, event ->
             if(keyCode== KeyEvent.KEYCODE_ENTER && event.action == MotionEvent.ACTION_DOWN){
                 search(binding.searchBar.text.toString())
@@ -148,14 +179,9 @@ class edu1_economic : AppCompatActivity() {
             startActivity(intent)
         })
 
-        binding.heartlist.layoutManager = LinearLayoutManager(this)
-        binding.heartlist.adapter = adapter
+        binding.edulist.layoutManager = LinearLayoutManager(this)
+        binding.edulist.adapter = adapter
 
-        binding.viewlist.layoutManager = LinearLayoutManager(this)
-        binding.viewlist.adapter = adapter
-
-        binding.recentlist.layoutManager = LinearLayoutManager(this)
-        binding.recentlist.adapter = adapter
     }
     companion object{
         private const val Tag = "edu1_economic"
