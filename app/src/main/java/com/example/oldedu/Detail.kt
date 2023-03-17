@@ -6,10 +6,6 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -83,7 +79,7 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //채팅 버튼 clickListener
         binding.btnComment.setOnClickListener{
-            val intent = Intent(this,Educated3::class.java)
+            val intent = Intent(this,educated3::class.java)
 
             intent.putExtra("postID",postId ) //댓글 액티비티에 postID 값 넘겨줌
             intent.putExtra("title",  title) //댓글 액티비티에 title 값 넘겨줌
@@ -96,7 +92,7 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //채팅 버튼 clickListener
         binding.commentGoBtn.setOnClickListener{
-            val intent = Intent(this,Educated3::class.java)
+            val intent = Intent(this,educated3::class.java)
 
             intent.putExtra("postID",postId ) //댓글 액티비티에 postID 값 넘겨줌
             intent.putExtra("title",  title) //댓글 액티비티에 title 값 넘겨줌

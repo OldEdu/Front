@@ -20,12 +20,24 @@ import com.example.oldedu.adapter.CommentAdapter
 import com.example.oldedu.databinding.ActivityEducated3Binding
 import com.example.oldedu.model.*
 import com.google.gson.Gson
+import java.text.FieldPosition
 
 
-class Educated3 : AppCompatActivity() {
+class educated3 : AppCompatActivity() {
     // 전역 변수로 바인딩 객체 선언
     private var mBinding: ActivityEducated3Binding? = null
+    init{
+        instance = this
+    }
 
+    companion object{
+        private var instance:educated3? = null
+        fun getInstance(): educated3? {
+            return instance
+        }
+
+
+    }
     // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
     private val binding get() = mBinding!!
 
@@ -85,6 +97,7 @@ class Educated3 : AppCompatActivity() {
         //하트, 스크랩 상태 화면에 출력
         viewEduPostUserClicked(postID.orEmpty(), LoginActivity.userID)
 
+        // 뒤로가기 버튼
         binding.backBtn.setOnClickListener {
             if (heartOnClicked || scrapOnClicked) {
                 val intent = Intent(this, Detail::class.java)
@@ -94,8 +107,14 @@ class Educated3 : AppCompatActivity() {
                 finish()
             }
         }
-        //댓글 리스트 화면에 출력
-        requestCommentList(postID.orEmpty());
+
+        if(LoginActivity.userID.length!=0){   //로그인 했을 경우
+            //댓글 리스트 화면에 출력
+            requestCommentListLogin(postID.orEmpty(),LoginActivity.userID);
+        }else{  //로그인 하지 않았을 경우
+            requestCommentList(postID.orEmpty())
+        }
+
 
         //게시물 하트 수 올리기 기능
         binding.buttonFavorite.setOnCheckedChangeListener { compoundButton, isChecked ->
@@ -178,7 +197,7 @@ class Educated3 : AppCompatActivity() {
                     Log.d("checked", isChecked.toString())
                     compoundButton.startAnimation(scaleAnimation)
                     if (postID != null) {
-                        requestSaveCancelScrapPost(scrapID.orEmpty())
+                        requestCancelScrapPost(scrapID.orEmpty())
                     }
                 }
 
@@ -231,6 +250,72 @@ class Educated3 : AppCompatActivity() {
 
 
     }
+    //댓글 삭제하기
+     fun requestDeleteComment(comment: Comment){
+         val builder = AlertDialog.Builder(this)
+         builder.setTitle("Are you sure you want to delete it?")
+             .setPositiveButton("yes",
+                 DialogInterface.OnClickListener { dialog, id ->
+                     commentList.remove(comment)
+                     binding.rvComment.adapter?.notifyDataSetChanged()
+
+                     val url = "http://34.168.110.14:8080/deleteComment/${comment.comtID}"
+                     //요청 객체만들기
+                     val request = object : StringRequest(
+                         //요청
+                         Request.Method.DELETE,
+                         url,
+                         //응답
+                         {
+                             //성공일때
+                             Log.d("comtID","응답->${it}")
+                         },
+                         {
+                             //에러일때
+                             Log.d("err", "응답->${it.message}")
+                         }
+                     ) {
+
+                     }
+
+                     //요청하고 응답받으면 동일한 주소로보내면 전에받았던걸 그대로보여줄수도있는데
+                     //실시간으로 보고싶을때 false로 해준다
+                     request.setShouldCache(false)
+                     //큐가알아서 요청을 보내고 응답을 받는다
+                     requestQueue?.add(request)
+                 }).setNegativeButton("no",
+                 DialogInterface.OnClickListener { dialog, id ->
+
+                 })
+         // 다이얼로그를 띄워주기
+         builder.show()
+
+
+
+
+    }
+
+
+//    fun editMember(position: Int, member: Member){
+//
+//        val builder = AlertDialog.Builder(this)
+//        val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
+//        val editText = builderItem.editText
+//
+//        with(builder){
+//            setTitle("Input Name")
+//            setMessage("이름을 입력 하세요")
+//            setView(builderItem.root)
+//            setPositiveButton("OK"){ _: DialogInterface, _: Int ->
+//                if(editText.text.toString() != null){
+//                    member.name = editText.text.toString()
+//                    data[position] = member
+//                    adapter?.notifyDataSetChanged()
+//                }
+//            }
+//            show()
+//        }
+//    }
 
     private fun viewEduPostUserClicked(postID: String, userID: String) {
         val url = "http://34.168.110.14:8080/returnViewHeart"
@@ -415,8 +500,8 @@ class Educated3 : AppCompatActivity() {
         requestQueue?.add(request)
 
     }
-
-    private fun requestSaveCancelScrapPost(scrapID: String) {
+    //스크랩 게시글 삭제하기 기능
+    private fun requestCancelScrapPost(scrapID: String) {
         val url = "http://34.168.110.14:8080/deleteScrap/${scrapID}"
         //요청 객체만들기
         val request = object : StringRequest(
@@ -450,7 +535,7 @@ class Educated3 : AppCompatActivity() {
 
     }
 
-
+    //비회원인 경우 댓글리스트 요청하기
     private fun requestCommentList(postID: String) {
 
         val url = "http://34.168.110.14:8080/commentListPost/${postID}"
@@ -480,6 +565,37 @@ class Educated3 : AppCompatActivity() {
         requestQueue?.add(request)
 
     }
+    //회원인 경우 댓글 리스트 요청하기
+    private fun requestCommentListLogin(postID: String,userID:String) {
+
+        val url = "http://34.168.110.14:8080/commentListPost/${postID}/${userID}"
+        //요청 객체만들기
+        val request = object : StringRequest(
+            //요청
+            Request.Method.GET,
+            url,
+            //응답
+            {
+                //정상응답일때
+                Log.d("success:","응답->$it")
+                commentListProcessResponse(it)
+            },
+            {
+                //에러일때
+                Log.d("err", "응답->${it.message}")
+            }
+        ) {
+
+        }
+
+        //요청하고 응답받으면 동일한 주소로보내면 전에받았던걸 그대로보여줄수도있는데
+        //실시간으로 보고싶을때 false로 해준다
+        request.setShouldCache(false)
+        //큐가알아서 요청을 보내고 응답을 받는다
+        requestQueue?.add(request)
+
+    }
+
 
     fun commentListProcessResponse(response: String) {
         val gson = Gson()
@@ -493,13 +609,5 @@ class Educated3 : AppCompatActivity() {
 
         binding.rvComment.adapter = CommentAdapter(commentList)
     }
-
-    fun eduPostProcessResponse(response: String) {
-        val gson = Gson()
-        val eduPostResponse = gson.fromJson(response, edu::class.java)
-        eduPost = eduPostResponse
-        binding.heartNumTextView.text = eduPostResponse.heart.toString()
-    }
-
 
 }

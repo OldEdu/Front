@@ -12,5 +12,8 @@ data class Comment(
     @SerializedName("postID")
     val userID:String,
     @SerializedName("userName")
-    val userName:String
+    val userName:String,
+    @SerializedName("myComment")
+    val myComment:Boolean
     )
+
