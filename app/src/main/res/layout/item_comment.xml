@@ -33,8 +33,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/icon_modify"
-                android:visibility="visible" />
+                android:background="@drawable/icon_modify" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_commentDelete"

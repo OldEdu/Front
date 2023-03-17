@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View.*
 import android.view.ViewGroup
 import androidx.core.text.set
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.RequestQueue
 import com.bumptech.glide.Glide.init
@@ -24,13 +25,17 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
     }
 
     override fun onBindViewHolder(holder: CommentAdapter.CustomViewHolder, position: Int) {
+
         holder.nickName.text=commentList[position].userName
         holder.date.text=commentList[position].comt_date
         holder.commentContent.text=commentList[position].comt_content
 
-        if(!commentList[position].myComment){ //내 코멘트가 아닌 경우 수정,삭제 버튼 비활성화
-            holder.btnCommentDelete.visibility = INVISIBLE
-            holder.btnCommentModify.visibility= INVISIBLE
+        if(commentList[position].myComment){ //내 코멘트인 경우 수정,삭제 버튼 활성화
+            holder.btnCommentDelete.visibility = VISIBLE
+            holder.btnCommentModify.visibility= VISIBLE
+        } else{ //내 코멘트인 경우 수정,삭제 버튼 활성화
+            holder.btnCommentDelete.visibility = GONE
+            holder.btnCommentModify.visibility= GONE
         }
 
         val educated3Activity = educated3.getInstance()
@@ -60,7 +65,18 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
 
 
     }
+    companion object{
+        val diffUtil = object : DiffUtil.ItemCallback<Comment>(){
+            override fun areItemsTheSame(oldItem: Comment, newItem: Comment): Boolean {
+                return oldItem == newItem
+            }
 
+            override fun areContentsTheSame(oldItem: Comment, newItem: Comment): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
     override fun getItemCount(): Int {
         return commentList.size
     }

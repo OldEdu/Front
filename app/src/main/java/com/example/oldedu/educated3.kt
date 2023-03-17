@@ -258,8 +258,6 @@ class educated3 : AppCompatActivity() {
          builder.setTitle("Are you sure you want to delete it?")
              .setPositiveButton("yes",
                  DialogInterface.OnClickListener { dialog, id ->
-                     commentList.remove(comment)
-                     binding.rvComment.adapter?.notifyDataSetChanged()
 
                      val url = "http://34.168.110.14:8080/deleteComment/${comment.comtID}"
                      //요청 객체만들기
@@ -292,7 +290,8 @@ class educated3 : AppCompatActivity() {
          // 다이얼로그를 띄워주기
          builder.show()
 
-
+        commentList.remove(comment)
+        binding.rvComment.adapter = CommentAdapter(commentList)
 
 
     }
@@ -324,7 +323,7 @@ class educated3 : AppCompatActivity() {
 
         comment.comt_content=updateCommentText
         commentList.set(position,comment)
-        Log.d("수정한comment정보",comment.toString())
+
         binding.rvComment.adapter = CommentAdapter(commentList)
 
     }
@@ -374,7 +373,16 @@ class educated3 : AppCompatActivity() {
         // 2. Request Obejct인 StringRequest 생성
         val request = object : StringRequest(Method.POST, url,
             Response.Listener { response ->
-                Toast.makeText(this, "댓글 작성 완료", Toast.LENGTH_LONG).show()
+
+                val gson = Gson()
+                val commentResponse = gson.fromJson(response, CommentResponse::class.java)
+                val result: ArrayList<Comment> = commentResponse.commentList;
+                val savedComment: Comment = result.get(0)
+
+                commentList.add(savedComment)
+                binding.rvComment.adapter = CommentAdapter(commentList)
+
+
             },
             Response.ErrorListener { error ->
                 Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
@@ -384,7 +392,7 @@ class educated3 : AppCompatActivity() {
                 val params: MutableMap<String, String> = HashMap()
                 params["postID"] = postID
                 params["userID"] = userID
-                params["comt_content"] = comt_content // 로그인하는 휴대폰번호 정보
+                params["comt_content"] = comt_content
 
                 return params
             }
@@ -395,7 +403,6 @@ class educated3 : AppCompatActivity() {
         //큐가알아서 요청을 보내고 응답을 받는다
         requestQueue?.add(request)
 
-        requestCommentListLogin(postID,userID)
 
 
     }
