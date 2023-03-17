@@ -6,7 +6,7 @@ data class Comment(
     @SerializedName("comtID")
     val comtID:String,
     @SerializedName("comt_content")
-    val comt_content:String,
+    var comt_content:String,
     @SerializedName("comt_date")
     val comt_date:String,
     @SerializedName("postID")

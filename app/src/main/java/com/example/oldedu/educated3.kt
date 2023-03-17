@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
@@ -39,7 +40,7 @@ class educated3 : AppCompatActivity() {
 
     }
     // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
-    private val binding get() = mBinding!!
+    val binding get() = mBinding!!
 
     var heartOnClicked = false;
     var scrapOnClicked = false;
@@ -78,6 +79,7 @@ class educated3 : AppCompatActivity() {
         binding.categoryTextView.text = category
         binding.heartNumTextView.text = heartNum
         binding.scrapNumTextView.text = scrapNum
+
 
         scaleAnimation = ScaleAnimation(
             0.7f,
@@ -268,7 +270,7 @@ class educated3 : AppCompatActivity() {
                          //응답
                          {
                              //성공일때
-                             Log.d("comtID","응답->${it}")
+                             Log.d("댓글 삭제 성공","응답->${it}")
                          },
                          {
                              //에러일때
@@ -295,27 +297,37 @@ class educated3 : AppCompatActivity() {
 
     }
 
+    fun requestEditComment(comment: Comment,position:Int,updateCommentText:String){
+        val url = "http://34.168.110.14:8080/updateComment"
+        // 2. Request Obejct인 StringRequest 생성
+        val request = object : StringRequest(Method.POST, url,
+            Response.Listener { response ->
+                Log.d("댓글 수정 성공","응답->${response}")
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
+            }
+        ) {
+            override fun getParams(): Map<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["comtID"] = comment.comtID
+                params["comt_content"] = updateCommentText
 
-//    fun editMember(position: Int, member: Member){
-//
-//        val builder = AlertDialog.Builder(this)
-//        val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
-//        val editText = builderItem.editText
-//
-//        with(builder){
-//            setTitle("Input Name")
-//            setMessage("이름을 입력 하세요")
-//            setView(builderItem.root)
-//            setPositiveButton("OK"){ _: DialogInterface, _: Int ->
-//                if(editText.text.toString() != null){
-//                    member.name = editText.text.toString()
-//                    data[position] = member
-//                    adapter?.notifyDataSetChanged()
-//                }
-//            }
-//            show()
-//        }
-//    }
+                return params
+            }
+
+        }
+        //실시간으로 보고싶을때 false로 해준다
+        request.setShouldCache(false)
+        //큐가알아서 요청을 보내고 응답을 받는다
+        requestQueue?.add(request)
+
+        comment.comt_content=updateCommentText
+        commentList.set(position,comment)
+        Log.d("수정한comment정보",comment.toString())
+        binding.rvComment.adapter = CommentAdapter(commentList)
+
+    }
 
     private fun viewEduPostUserClicked(postID: String, userID: String) {
         val url = "http://34.168.110.14:8080/returnViewHeart"
@@ -382,7 +394,10 @@ class educated3 : AppCompatActivity() {
         request.setShouldCache(false)
         //큐가알아서 요청을 보내고 응답을 받는다
         requestQueue?.add(request)
-        requestCommentList(postID)
+
+        requestCommentListLogin(postID,userID)
+
+
     }
 
     //하트 수 올리기 기능

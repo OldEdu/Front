@@ -2,19 +2,18 @@ package com.example.oldedu.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View.INVISIBLE
+import android.view.View.*
 import android.view.ViewGroup
+import androidx.core.text.set
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.RequestQueue
 import com.bumptech.glide.Glide.init
 import com.example.oldedu.educated3
 import com.example.oldedu.databinding.ItemCommentBinding
 import com.example.oldedu.model.Comment
+import kotlinx.android.synthetic.main.item_contents.view.*
 
 class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<CommentAdapter.CustomViewHolder>(){
-    var requestQueue: RequestQueue? = null
-    var item_position:Int=0
-    var comment:Comment?=null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,8 +24,6 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
     }
 
     override fun onBindViewHolder(holder: CommentAdapter.CustomViewHolder, position: Int) {
-        item_position=position
-        comment=commentList[position]
         holder.nickName.text=commentList[position].userName
         holder.date.text=commentList[position].comt_date
         holder.commentContent.text=commentList[position].comt_content
@@ -41,25 +38,25 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
         holder.btnCommentDelete.setOnClickListener {
             educated3Activity?.requestDeleteComment(commentList[position])
         }
-//            binding.btnCommentModify.setOnClickListener {
-//                educated3?.editMember(mPosition!!, mMember!!)
-//            }
+
+        var updateCommentText=""
+        holder.btnCommentModify.setOnClickListener {
+            holder.commentContent.visibility= GONE
+            holder.editLayout.visibility= VISIBLE
+            educated3Activity?.binding?.commentEditLayout?.visibility= GONE
+            holder.editTextComment.setText(commentList[position].comt_content)
 
 
+        }
 
+        holder.btnEditComment.setOnClickListener {
+            updateCommentText= holder.editTextComment.text.toString()
+            educated3Activity?.requestEditComment(commentList[position],position,updateCommentText)
+            holder.commentContent.visibility= VISIBLE
+            holder.editLayout.visibility= GONE
+            educated3Activity?.binding?.commentEditLayout?.visibility= VISIBLE
+        }
 
-//        //댓글 삭제 리스너
-//        holder.btnCommentDelete.setOnClickListener {
-//
-//            Log.d("댓글삭제 리스너",commentList[position].comtID)
-//            //requestDeleteComment(commentList[position].comtID)
-//            //commentList.remove(commentList[position])
-//
-//        }
-//        //댓글 수정 리스너
-//        holder.btnCommentModify.setOnClickListener {
-//
-//        }
 
 
     }
@@ -74,7 +71,9 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
         val date = binding.dateTextView
         val btnCommentDelete = binding.btnCommentDelete
         val btnCommentModify = binding.btnCommentModify
-
+        val editLayout=binding.editLayout
+        val editTextComment=binding.editTextComment
+        val btnEditComment=binding.btnEditComment
 
     }
 
