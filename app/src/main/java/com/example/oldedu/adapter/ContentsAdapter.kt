@@ -38,8 +38,7 @@ class ContentsAdapter (val contentsList : ArrayList<Mycontents>):RecyclerView.Ad
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, EduImgListActivity::class.java)
-            val postID = intent.getStringExtra("postID")
-            intent.putExtra("postID", postID)
+            intent.putExtra("postID", contentsList[position].postID)
             holder.itemView.context.startActivity(intent)
         }
 

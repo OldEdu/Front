@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.oldedu.adapter.eduadapter
 import com.example.oldedu.adapter.txtadapter
 import com.example.oldedu.databinding.ActivityEducated2Binding
 import com.example.oldedu.educated.edu_txt
@@ -63,7 +62,7 @@ class educated2 : AppCompatActivity() {
             })
 
         finishbtn.setOnClickListener({
-                val intent = Intent(this, Educated3::class.java)
+                val intent = Intent(this, educated3::class.java)
                 startActivity(intent)
             })
 

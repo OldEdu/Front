@@ -6,16 +6,14 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.oldedu.databinding.ActivityDetailBinding
@@ -47,11 +45,9 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         val model = intent.getParcelableExtra<edu>("edumodel")
 
-        val title = model?.title.orEmpty()
-        val postId= model?.postID.orEmpty()
-        val category = model?.category.orEmpty()
-        val heartNum = model?.heart
-        val scrapNum = model?.scrap
+        var title = model?.title.orEmpty()
+        var postId= model?.postID.orEmpty()
+        var category = model?.category.orEmpty()
 
         binding.titleTextView.text = title
 
@@ -83,17 +79,13 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //채팅 버튼 clickListener
         binding.btnComment.setOnClickListener{
-            val intent = Intent(this,Educated3::class.java)
-
-            intent.putExtra("postID",postId ) //댓글 액티비티에 postID 값 넘겨줌
-            intent.putExtra("title",  title) //댓글 액티비티에 title 값 넘겨줌
-            intent.putExtra("category",category)//댓글 액티비티에 category 값 넘겨줌
-            intent.putExtra("heartNum",heartNum.toString())//댓글 액티비티에 heartNum 값 넘겨줌
-            intent.putExtra("scrapNum",scrapNum.toString())//댓글 액티비티에 scrapNum 값 넘겨줌
-
-            startActivity(intent)
+            requestEduPost(model?.postID.orEmpty())
         }
 
+        //채팅 버튼 clickListener
+        binding.commentGoBtn.setOnClickListener{
+            requestEduPost(model?.postID.orEmpty())
+        }
 
     }
 
@@ -118,6 +110,49 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
                     0)
             }
         }
+    }
+
+
+
+
+    private fun requestEduPost(postID:String){
+
+        val url="http://34.168.110.14:8080/post/${postID}"
+        //요청 객체만들기
+        val request = object : StringRequest(
+            //요청
+            Request.Method.GET,
+            url,
+            //응답
+            {
+                //정상응답일때
+                val gson = Gson()
+                val eduPost = gson.fromJson(it, edu::class.java)
+                val intent = Intent(this, educated3::class.java)
+                intent.putExtra("postID",eduPost.postID ) //댓글 액티비티에 postID 값 넘겨줌
+                intent.putExtra("title",  eduPost.title) //댓글 액티비티에 title 값 넘겨줌
+                intent.putExtra("category",eduPost.category)//댓글 액티비티에 category 값 넘겨줌
+                intent.putExtra("heartNum",eduPost.heart.toString())//댓글 액티비티에 heartNum 값 넘겨줌
+                intent.putExtra("scrapNum",eduPost.scrap.toString())//댓글 액티비티에 scrapNum 값 넘겨줌
+
+                startActivity(intent)
+
+
+            },
+            {
+                //에러일때
+                Log.d("err","응답->${it.message}")
+            }
+        ){
+
+        }
+
+        //요청하고 응답받으면 동일한 주소로보내면 전에받았던걸 그대로보여줄수도있는데
+        //실시간으로 보고싶을때 false로 해준다
+        request.setShouldCache(false)
+        //큐가알아서 요청을 보내고 응답을 받는다
+        requestQueue?.add(request)
+
     }
     private fun requestEduPhotoList(postID:String){
 

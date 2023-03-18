@@ -23,19 +23,24 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="2"
+                android:layout_weight="4"
                 android:fontFamily="@font/notosanskr_medium"
                 android:text="작성자"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/notosanskr_medium"
-                android:text="시간"
-                android:textColor="@color/black" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_commentModify"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_modify" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_commentDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_delete" />
 
         </LinearLayout>
 
@@ -47,6 +52,46 @@
             android:fontFamily="@font/notosanskr_medium"
             android:text="댓글내용"
             android:textColor="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/editLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editTextComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="@font/notosanskr_medium"
+                android:inputType="textPersonName"
+                android:text="comment"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+
+                android:id="@+id/btnEditComment"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/baseline_send_24"
+                android:textColor="#3F51B5" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/notosanskr_light"
+            android:text="시간" />
 
     </LinearLayout>
 </LinearLayout>
