@@ -376,6 +376,7 @@ class educated3 : AppCompatActivity() {
 
                 val gson = Gson()
                 val commentResponse = gson.fromJson(response, CommentResponse::class.java)
+                Log.d("댓글 작성 성공!!",response)
                 val result: ArrayList<Comment> = commentResponse.commentList;
                 val savedComment: Comment = result.get(0)
 
@@ -599,6 +600,7 @@ class educated3 : AppCompatActivity() {
             //응답
             {
                 //정상응답일때
+
                 Log.d("success:","응답->$it")
                 commentListProcessResponse(it)
             },
