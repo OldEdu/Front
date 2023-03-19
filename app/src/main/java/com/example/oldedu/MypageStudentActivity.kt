@@ -87,6 +87,12 @@ class MypageStudentActivity : AppCompatActivity() {
 
         })
 
+        btn_scrap.setOnClickListener({
+            val intent = Intent(this, MyscrapActivity::class.java)
+            intent.putExtra("userID", userID)
+            startActivity(intent)
+        })
+
 
     }
 }
