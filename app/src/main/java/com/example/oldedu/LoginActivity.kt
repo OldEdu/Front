@@ -33,15 +33,15 @@ class LoginActivity : AppCompatActivity() {
 //            .load("https://firebasestorage.googleapis.com/v0/b/oldedu-c93f3.appspot.com/o/images%2F1677952570720.png?alt=media&token=60c6cbb1-461d-4f4d-b2bf-2cbd1d77c529")
 //            .into(imgtest)
 
-        btn_home.setOnClickListener({
+        btn_home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
-        btn_back.setOnClickListener({
+        btn_back.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
 
         var retrofit = Retrofit.Builder()
@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             userType = type
 
             if (type==true) { // 학생일 경우
-                val intent = Intent(this, CatActivity::class.java)
+                val intent = Intent(this, MypageStudentActivity::class.java)
                 intent.putExtra("userID", userID)
                 startActivity(intent)
             } else { // 선생님일 경우

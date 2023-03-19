@@ -50,21 +50,20 @@ class MypageStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_student)
 
-        btn_home.setOnClickListener({
+        btn_home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
-        back_btn.setOnClickListener({
+        back_btn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(MyPageStudentApi::class.java)
 
-        val getIntent = getIntent()
-        val userID = getIntent.getStringExtra("userID").toString()
+        val userID = intent.getStringExtra("userID").toString()
 
 
 
