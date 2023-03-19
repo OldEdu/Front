@@ -60,9 +60,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_scrap"
                 android:layout_width="match_parent"
-                android:layout_height="568dp"
-                android:layout_marginTop="15dp"
-                />
+                android:layout_height="662dp"
+                android:layout_marginTop="15dp" />
         </LinearLayout>
     </ScrollView>
 
