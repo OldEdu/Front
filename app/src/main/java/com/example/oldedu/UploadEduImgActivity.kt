@@ -20,6 +20,7 @@ class UploadEduImgActivity : AppCompatActivity() {
         setContentView(R.layout.activity_upload_edu_img)
 
         val postID = intent.getStringExtra("postID")
+        val userID = intent.getStringExtra("userID")
 
         btn_addImg.setOnClickListener { openGallery() }
         btn_deleteImg.setOnClickListener { handleDelImgBtn() }
@@ -28,6 +29,7 @@ class UploadEduImgActivity : AppCompatActivity() {
                 val intent = Intent(this,UploadEduTextActivity::class.java)
                 intent.putExtra("imgUrl",currentImgUrl.toString())
                 intent.putExtra("postID",postID)
+                intent.putExtra("userID",userID)
                 startActivity(intent)
             } else {
                 val build = AlertDialog.Builder(this).setTitle("There is no image")

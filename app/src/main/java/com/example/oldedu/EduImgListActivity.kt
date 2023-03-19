@@ -72,6 +72,7 @@ class EduImgListActivity : AppCompatActivity() {
         btn_createImg.setOnClickListener {
             val intent = Intent(this,UploadEduImgActivity::class.java)
             intent.putExtra("postID",postID)
+            intent.putExtra("userID",userID)
             startActivity(intent)
         }
 

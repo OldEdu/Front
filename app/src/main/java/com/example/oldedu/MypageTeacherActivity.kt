@@ -55,29 +55,31 @@ class MypageTeacherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_teacher)
 
-        home.setOnClickListener({
+        home.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
-        btn_back.setOnClickListener({
+        btn_back.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        })
+        }
 
-        btn_myContents.setOnClickListener({
+        btn_myContents.setOnClickListener{
             val intent = Intent(this,mycontents::class.java)
             intent.putExtra("userID",userID)
             startActivity(intent)
-        })
+        }
 
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(
             GsonConverterFactory.create()).build()
         val service = retrofit.create(MyPageTeacherApi::class.java)
 
-        val getIntent = getIntent()
-        val userID = getIntent.getStringExtra("userID").toString()
+//        val getIntent = getIntent()
+//        val userID = getIntent.getStringExtra("userID").toString()
+        val userID = intent.getStringExtra("userID").toString()
+        Log.d("여기는 선생님 마이페이지" , userID)
 
         service.getUserID(userID).enqueue(object : Callback<MyPageTeacher> {
             override fun onResponse(call: Call<MyPageTeacher>, response: Response<MyPageTeacher>) {

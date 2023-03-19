@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.example.oldedu.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_modify_upload_edu_img.*
-import kotlinx.android.synthetic.main.activity_mypage_student.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,14 +57,15 @@ interface GetPhotoApi {
 
 class ModifyUploadEduImgActivity : AppCompatActivity() {
     private val OPEN_GALLERY = 1
-    var currentImgUrl:Uri? = null
-    var imgUrl:String = ""
+    var currentImgUrl:Uri? = null // 바꾼 사진
+    lateinit var imgUrl:String  // 원래 사진 & 그 다음 화면으로 받을 uri
     var textGuide :String = ""
     var voiceGuide :String = ""
+    var postID : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_edu_img)
+        setContentView(R.layout.activity_modify_upload_edu_img)
 
         val eduPhotoID = intent.getStringExtra("eduPhotoID")
 
@@ -81,6 +81,7 @@ class ModifyUploadEduImgActivity : AppCompatActivity() {
                         imgUrl = response.imgUrl
                         textGuide = response.textGuide
                         voiceGuide = response.voiceGuide
+                        postID = response.postID
                         Glide.with(this@ModifyUploadEduImgActivity)
                             .load(imgUrl)
                             .fallback(R.drawable.logo)
@@ -101,13 +102,16 @@ class ModifyUploadEduImgActivity : AppCompatActivity() {
         }
         btn_deleteImg.setOnClickListener { handleDelImgBtn() }
         btn_modifyPost.setOnClickListener {
-            if(!currentImgUrl.toString().isNullOrBlank()) {
-                Log.d("test~~~~~~", textGuide)
+            if(!imgUrl.isNullOrBlank()) {
+                Log.d("imgURL !!!!~~~~~~", imgUrl)
+                Log.d("test~~~~~~", eduPhotoID.toString())
                 val intent = Intent(this,ModifyUploadEduTextActivity::class.java)
-                intent.putExtra("imgUrl",currentImgUrl.toString())
+                intent.putExtra("imgUrl",imgUrl)
                 intent.putExtra("eduPhotoID" , eduPhotoID)
                 intent.putExtra("textGuide", textGuide)
                 intent.putExtra("voiceGuide", voiceGuide)
+                intent.putExtra("postID", postID)
+
                 startActivity(intent)
             } else {
                 val build = AlertDialog.Builder(this).setTitle("There is no image")
