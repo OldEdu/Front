@@ -17,6 +17,7 @@ class UploadEduTextActivity : AppCompatActivity() {
 
         val postID = intent.getStringExtra("postID")
         val imgUrl = intent.getStringExtra("imgUrl")
+        val userID = intent.getStringExtra("userID")
 
 //        var voiceGuide = editText_voice.text.toString()
 //        var textGuide = editText_text.text.toString()
@@ -30,6 +31,7 @@ class UploadEduTextActivity : AppCompatActivity() {
             intent.apply {
                 this.putExtra("postID",postID)
                 this.putExtra("imgUrl",imgUrl)
+                this.putExtra("userID",userID)
                 this.putExtra("voiceGuide",editText_voice.text.toString())
                 this.putExtra("textGuide",editText_text.text.toString())
             }

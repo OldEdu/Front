@@ -104,6 +104,7 @@ class UploadEduMarkActivity : AppCompatActivity() {
 
         val postID = intent.getStringExtra("postID").toString()
         val imgUrl = intent.getStringExtra("imgUrl")
+        val userID = intent.getStringExtra("userID")
         val voiceGuide = intent.getStringExtra("voiceGuide").toString()
         val textGuide = intent.getStringExtra("textGuide").toString()
         var currBox:Int = 0
@@ -183,9 +184,9 @@ class UploadEduMarkActivity : AppCompatActivity() {
 //        val storageRef = Firebase.storage.reference
 
         btn_next.setOnClickListener {
-            val intent = Intent(this, EduImgListActivity::class.java)
-            intent.putExtra("postID", postID)
-            intent.putExtra("img", "")
+//            val intent = Intent(this, EduImgListActivity::class.java)
+//            intent.putExtra("postID", postID)
+//            intent.putExtra("img", "")
 
             val CAPTURE_PATH = ""
             ActivityCompat.requestPermissions(this, arrayOf(permission.WRITE_EXTERNAL_STORAGE), 1)
@@ -222,36 +223,44 @@ class UploadEduMarkActivity : AppCompatActivity() {
                         Log.d("uri????", it.toString())
 
                         var createEduImgData = CreateEduImgData(postID,it.toString(),voiceGuide,textGuide)
-                        postApi(createEduImgData)
+//                        postApi(createEduImgData)
 
-                        intent.putExtra("markedImg", strFilePath)
-                        startActivity(intent)
+                        // ###
+                        val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(
+                            GsonConverterFactory.create()).build()
+                        val service = retrofit.create(CreateEduImgApi::class.java)
 
-//                        val file = File(it.path)
-//                        val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
-//                        val imagePart = MultipartBody.Part.createFormData("image", file.name, requestFile)
-//
-//                        val storageRef = Firebase.storage.reference
-//
-//                        val fileRef = storageRef.child("images/${imgTime}.png")
-//                        Log.d("zzz--imgTime" , imgTime.toString())
-//                        val localFile = File.createTempFile("images", "png")
-//                        fileRef.getFile(localFile)
-//                            .addOnSuccessListener {
-//                                // 파일 다운로드 성공
-//                                val requestFile = RequestBody.create(MediaType.parse("image/*"), localFile)
-//                                val imagePart = MultipartBody.Part.createFormData("image", localFile.name, requestFile)
-//                                // 이미지 업로드 로직 작성
-//                                Log.d("++++++", imagePart.toString())
-//                                Log.d("aaaaa", requestFile.toString())
-//                            }
-//                            .addOnFailureListener {
-//                                Log.e("TAG", "Error downloading file: ${it.message}")
-//                            }
-//
-////                        postApi(postID,imagePart,voiceGuide,textGuide)
-//                        Log.d(">>>//>>" , file.toString())
-//                        Log.d(">>//>imgpart>>" , imagePart.toString())
+                        service.postCreateEduPhoto(createEduImgData).enqueue(object : Callback<CreateEduImgResult> {
+                            override fun onResponse(call: Call<CreateEduImgResult>, response: Response<CreateEduImgResult>
+                            ) {
+                                Log.d("... result",response.toString())
+                                var result = response.body()?.success
+                                Log.d("postApi result",result.toString())
+                                if (result != null) {
+                                    Log.d("성공..?",result.toString())
+                                }
+                                val intent = Intent(this@UploadEduMarkActivity, EduImgListActivity::class.java)
+                                intent.putExtra("postID", postID)
+                                intent.putExtra("img", "")
+                                intent.putExtra("userID", userID)
+                                intent.putExtra("markedImg", strFilePath)
+                                startActivity(intent)
+                            }
+
+                            override fun onFailure(call: Call<CreateEduImgResult>, t: Throwable) {
+                                Log.d("failed postApi result",t.message.toString())
+                            }
+
+
+                        })
+                        //###
+
+//                        val intent = Intent(this, EduImgListActivity::class.java)
+//                        intent.putExtra("postID", postID)
+//                        intent.putExtra("img", "")
+//                        intent.putExtra("userID", userID)
+//                        intent.putExtra("markedImg", strFilePath)
+//                        startActivity(intent)
                     }
 
                 }
@@ -278,35 +287,8 @@ class UploadEduMarkActivity : AppCompatActivity() {
 //                startActivity(intent)
             }
 
-//            intent.putExtra("markedImg" , markedImg)
         }
     }
-
-    private fun downloadImg (pathString:String) {
-        val storageRef = Firebase.storage.reference
-        val fileRef = storageRef.child(pathString)
-        val localFile = File.createTempFile("images", "png")
-        fileRef.getFile(localFile)
-            .addOnSuccessListener {
-                // 파일 다운로드 성공
-                val requestFile = RequestBody.create(MediaType.parse("image/*"), localFile)
-                val imagePart = MultipartBody.Part.createFormData("image", localFile.name, requestFile)
-                // 이미지 업로드 로직 작성
-            }
-            .addOnFailureListener {
-                // 파일 다운로드 실패
-                Log.e("TAG", "Error downloading file: ${it.message}")
-            }
-    }
-    private fun absolutelyPath(path: Uri?, context : Context): String {
-        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
-        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c?.moveToFirst()
-        var result = c?.getString(index!!)
-        return result!!
-    }
-
 
     private fun handleMark(box: ImageView) {
         box.visibility =  View.VISIBLE

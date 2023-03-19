@@ -4,9 +4,7 @@ import com.example.oldedu.R
 import android.Manifest.*
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.ACTION_MOVE
@@ -18,10 +16,13 @@ import androidx.annotation.Keep
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.drawToBitmap
+import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.synthetic.main.activity_upload_edu_mark.*
+import kotlinx.android.synthetic.main.activity_modify_upload_edu_mark.*
+import kotlinx.android.synthetic.main.activity_modify_upload_edu_mark.btn_next
+import kotlinx.android.synthetic.main.activity_modify_upload_edu_mark.imgView_screenImg
 import kotlinx.android.synthetic.main.activity_upload_edu_mark.layout_imgMark
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,20 +73,25 @@ class ModifyUploadEduMarkActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_edu_mark)
+        setContentView(R.layout.activity_modify_upload_edu_mark)
 
         mark_box.bringToFront()
         mark_box1.bringToFront()
         mark_box2.bringToFront()
 
         val postID = intent.getStringExtra("postID").toString()
+        val eduPhotoID = intent.getStringExtra("eduPhotoID").toString()
         val imgUrl = intent.getStringExtra("imgUrl")
         val voiceGuide = intent.getStringExtra("voiceGuide").toString()
         val textGuide = intent.getStringExtra("textGuide").toString()
         var currBox:Int = 0
         val currentImgUrl = intent.getStringExtra("imgUrl").toString()
-        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(currentImgUrl))
-        imgView_screenImg.setImageBitmap(bitmap)
+//        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, Uri.parse(currentImgUrl))
+//        imgView_screenImg.setImageBitmap(bitmap)
+        Glide.with(this)
+            .load(imgUrl)
+            .fallback(R.drawable.logo)
+            .into(imgView_screenImg)
 
         val boxes:List<ImageView> = listOf(mark_box,mark_box1,mark_box2)
 
@@ -193,7 +199,7 @@ class ModifyUploadEduMarkActivity : AppCompatActivity() {
                         Log.d("uri?", it.path.toString())
                         Log.d("uri????", it.toString())
 
-                        var createEduImgData = CreateEduImgData(postID,it.toString(),voiceGuide,textGuide)
+                        var createEduImgData = CreateEduImgData(eduPhotoID,it.toString(),voiceGuide,textGuide)
                         postApi(createEduImgData)
 
                         intent.putExtra("markedImg", strFilePath)
