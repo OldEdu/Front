@@ -20,9 +20,6 @@ import retrofit2.http.Path
 
 class ContentsAdapter (val contentsList : ArrayList<Mycontents>):RecyclerView.Adapter<ContentsAdapter.CustomViewHolder>()
 {
-
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -33,7 +30,7 @@ class ContentsAdapter (val contentsList : ArrayList<Mycontents>):RecyclerView.Ad
 
     }
 
-    override fun onBindViewHolder(holder: ContentsAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.contentstitle.text = contentsList[position].title
 
         holder.itemView.setOnClickListener{
@@ -41,7 +38,6 @@ class ContentsAdapter (val contentsList : ArrayList<Mycontents>):RecyclerView.Ad
             intent.putExtra("postID", contentsList[position].postID)
             holder.itemView.context.startActivity(intent)
         }
-
 
     }
 
@@ -57,7 +53,5 @@ class ContentsAdapter (val contentsList : ArrayList<Mycontents>):RecyclerView.Ad
 
 
     }
-
-
 
 }

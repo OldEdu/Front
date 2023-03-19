@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Keep
+import com.example.oldedu.LoginActivity.Companion.userID
 //import android.telecom.Call
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_add.*
@@ -60,6 +61,12 @@ class MypageStudentActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btn_scrap.setOnClickListener{
+            val intent = Intent(this, MyscrapActivity::class.java)
+            intent.putExtra("userID", userID)
+            startActivity(intent)
+        }
+
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(MyPageStudentApi::class.java)
 
@@ -86,11 +93,6 @@ class MypageStudentActivity : AppCompatActivity() {
 
         })
 
-        btn_scrap.setOnClickListener({
-            val intent = Intent(this, MyscrapActivity::class.java)
-            intent.putExtra("userID", userID)
-            startActivity(intent)
-        })
 
 
     }

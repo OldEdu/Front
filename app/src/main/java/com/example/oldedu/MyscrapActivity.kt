@@ -34,13 +34,10 @@ class MyscrapActivity : AppCompatActivity() {
         val userID = intent.getStringExtra("userID")
         val title = intent.getStringExtra("title")
         val postID = intent.getStringExtra("postID")
-        val category = intent.getStringExtra("category")
 
 
         requestContentsList(userID.orEmpty());
         requestContentsList(postID.orEmpty());
-        requestContentsList(title.orEmpty());
-        requestContentsList(category.orEmpty());
 
     }
 
@@ -69,7 +66,7 @@ class MyscrapActivity : AppCompatActivity() {
         val gson = Gson()
         val scrapResponse = gson.fromJson(response, ScrapResponse::class.java)
 
-        scrapList = scrapResponse.contentsList;
+        scrapList = scrapResponse.scrapList;
 
         binding.rvScrap.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         binding.rvScrap.setHasFixedSize(true)

@@ -6,5 +6,5 @@ data class ScrapResponse (
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("result")
-    val contentsList: ArrayList<Scrap>
+    val scrapList: ArrayList<Scrap>
         )
