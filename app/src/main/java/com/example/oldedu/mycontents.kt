@@ -80,8 +80,6 @@ class mycontents : AppCompatActivity() {
 
         contentsList = contentsResponse.contentsList;
 
-
-
         binding.rvContents.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         binding.rvContents.setHasFixedSize(true)
         binding.rvContents.adapter = ContentsAdapter(contentsList)
