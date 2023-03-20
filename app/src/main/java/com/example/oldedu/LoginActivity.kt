@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
             userType = type
 
             if (type==true) { // 학생일 경우
-                val intent = Intent(this, MypageStudentActivity::class.java)
+                val intent = Intent(this, CatActivity::class.java)
                 intent.putExtra("userID", userID)
                 startActivity(intent)
             } else { // 선생님일 경우

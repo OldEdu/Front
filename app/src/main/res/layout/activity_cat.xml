@@ -38,14 +38,14 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btn_home"
+            android:id="@+id/btn_mypage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:fontFamily="@font/notosanskr_bold"
-            android:text="HOME"
+            android:text="My page"
             android:textColor="#ffffff"
             android:textSize="15dp" />
 

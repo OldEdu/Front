@@ -1,10 +1,12 @@
 package com.example.oldedu.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.oldedu.Detail
 import com.example.oldedu.R
 import com.example.oldedu.model.Scrap
 
@@ -20,6 +22,12 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
     }
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.scraptitle.text = scrapList[position].title
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, Detail::class.java)
+            intent.putExtra("edumodel", scrapList[position].postID)
+            holder.itemView.context.startActivity(intent)
+        }
 
 
     }
