@@ -84,14 +84,21 @@
                 android:textColor="#3F51B5" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/dateTextView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="@font/notosanskr_light"
-            android:text="시간" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_light"
+                android:text="시간" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
