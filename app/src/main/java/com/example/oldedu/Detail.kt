@@ -44,14 +44,19 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
         requestQueue = Volley.newRequestQueue(applicationContext)
 
         val model = intent.getParcelableExtra<edu>("edumodel")
+        val model2 = intent.getParcelableExtra<Scrap>("scrapmodel")
 
         var title = model?.title.orEmpty()
         var postId= model?.postID.orEmpty()
         var category = model?.category.orEmpty()
 
+        var title1 = model?.title.orEmpty()
+
         binding.titleTextView.text = title
+        binding.titleTextView.text = title1
 
         requestEduPhotoList(model?.postID.orEmpty()); //교욱 사진 불러오기
+
         binding.btnBack.setOnClickListener{
             val intent = Intent(this, educated2::class.java)
             startActivity(intent)
@@ -111,9 +116,6 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
     }
-
-
-
 
     private fun requestEduPost(postID:String){
 

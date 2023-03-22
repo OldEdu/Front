@@ -19,6 +19,7 @@ class MyscrapActivity : AppCompatActivity() {
 
     private var mbinding:ActivityMyscrapBinding? = null
     private val binding get() = mbinding!!
+    private lateinit var adapter:ScrapAdapter
 
     var requestQueue: RequestQueue?= null
     lateinit var scrapList: ArrayList<Scrap>
@@ -29,6 +30,7 @@ class MyscrapActivity : AppCompatActivity() {
 
         mbinding = ActivityMyscrapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         requestQueue = Volley.newRequestQueue(applicationContext)
         val userID = intent.getStringExtra("userID")
