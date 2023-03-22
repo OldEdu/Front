@@ -1,6 +1,7 @@
 package com.example.oldedu
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,7 @@ class edu1_search : AppCompatActivity() {
 
         initview()
 
+
         val retrofit1 = Retrofit.Builder()
             .baseUrl("http://34.168.110.14:8080/searchHeartPosts/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -52,11 +54,20 @@ class edu1_search : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+        //기본 값 최신순 게시글 정렬
+        binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+
         Edu_search = retrofit1.create(edu_search::class.java)
         val edu_search2 = retrofit2.create(edu_search2::class.java)
         val edu_search3 = retrofit3.create(edu_search3::class.java)
 
         heartbtn.setOnClickListener {
+
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
             Edu_search.getpost1("")
                 .enqueue(object : Callback<searchdto> {
                     override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
@@ -81,6 +92,9 @@ class edu1_search : AppCompatActivity() {
         }
 
        viewbtn.setOnClickListener {
+           binding.viewbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+           binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+           binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
            edu_search2.getpost()
                .enqueue(object : Callback<dto> {
                    override fun onResponse(call: Call<dto>, response: Response<dto>) {
@@ -105,6 +119,9 @@ class edu1_search : AppCompatActivity() {
        }
 
         recentbtn.setOnClickListener {
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
             edu_search3.getpost()
                 .enqueue(object : Callback<dto> {
                     override fun onResponse(call: Call<dto>, response: Response<dto>) {

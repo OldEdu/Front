@@ -13,6 +13,8 @@ data class Comment(
     val userID:String,
     @SerializedName("userName")
     val userName:String,
+    @SerializedName("term")
+    val term:String,
     @SerializedName("myComment")
     val myComment:Boolean
     )

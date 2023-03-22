@@ -27,8 +27,9 @@ class CommentAdapter(val commentList:ArrayList<Comment>): RecyclerView.Adapter<C
     override fun onBindViewHolder(holder: CommentAdapter.CustomViewHolder, position: Int) {
 
         holder.nickName.text=commentList[position].userName
-        holder.date.text=commentList[position].comt_date
+        holder.date.text="${commentList[position].comt_date}(${commentList[position].term})"
         holder.commentContent.text=commentList[position].comt_content
+
 
         if(commentList[position].myComment){ //내 코멘트인 경우 수정,삭제 버튼 활성화
             holder.btnCommentDelete.visibility = VISIBLE

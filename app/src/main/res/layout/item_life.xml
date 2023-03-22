@@ -1,125 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/login_box">
 
-    <TextView
-        android:id="@+id/titletext"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:lines="1"
-        android:text="제목제목제목"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/userIDtext"
-        android:layout_width="180dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="4dp"
-        android:gravity="right"
-        android:maxLines="1"
-        android:text="userid"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/hearttext"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="30dp"
-        android:text="Heart"
-        android:textColor="@color/black"
-        android:gravity="left"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+            <TextView
+                android:id="@+id/categoryText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="category"
+                android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/heartcount"
-        android:layout_width="360dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="30dp"
-        android:text="heart"
-        android:gravity="left"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+            <TextView
+                android:id="@+id/in_dateText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_light"
+                android:gravity="center"
+                android:text="in_date" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/viewtext"
-        android:layout_width="300dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="30dp"
-        android:text="View"
-        android:textColor="@color/black"
-        android:gravity="left"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+        <TextView
+            android:id="@+id/titletext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/notosanskr_bold"
+            android:text="title"
+            android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/viewcount"
-        android:layout_width="265dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="30dp"
-        android:text="view"
-        android:gravity="left"
-        android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/commenttext"
-        android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="4dp"
-        android:gravity="left"
-        android:maxLines="1"
-        android:text="Comment"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+            <TextView
+                android:id="@+id/heartcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="heart : 0"
+                android:textColor="#000000" />
 
-    <TextView
-        android:id="@+id/commentcount"
-        android:layout_width="335dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="4dp"
-        android:gravity="left"
-        android:maxLines="1"
-        android:text="comment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/titletext"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titletext" />
+            <TextView
+                android:id="@+id/viewcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="view : 0"
+                android:textColor="#000000" />
 
+            <TextView
+                android:id="@+id/commentcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/notosanskr_regular"
+                android:text="comment : 0"
+                android:textColor="#000000" />
+        </LinearLayout>
 
-
-
+        <TextView
+            android:id="@+id/usernameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:text=" Writer : userName"
+            android:textColor="#000000" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
