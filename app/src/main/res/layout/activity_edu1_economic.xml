@@ -54,8 +54,6 @@
 
     </LinearLayout>
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,38 +63,65 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/search_bar"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/search_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosanskr_medium"
+                    android:hint=" Enter the post name you want to find"
+                    android:inputType="text"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/searchbtn"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="0.3"
+                    android:background="@drawable/baseline_search_24"
+                    android:backgroundTint="@color/mainColor"
+                    android:backgroundTintMode="add" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/heartbtn"
-                    android:text="heart"
-                    android:layout_marginLeft="35dp"
+                    android:id="@+id/recentbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
+                    android:layout_marginLeft="35dp"
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="recent" />
+
+                <Button
+                    android:id="@+id/heartbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="heart" />
 
                 <Button
                     android:id="@+id/viewbtn"
-                    android:text="view"
-                    android:layout_marginLeft="35dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
-
-                <Button
-                    android:id="@+id/recentbtn"
-                    android:text="recent"
                     android:layout_marginLeft="35dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="view" />
 
 
             </LinearLayout>
@@ -106,8 +131,6 @@
                 android:id="@+id/edulist"
                 android:layout_width="410dp"
                 android:layout_height="620dp" />
-
-
         </LinearLayout>
     </ScrollView>
 
