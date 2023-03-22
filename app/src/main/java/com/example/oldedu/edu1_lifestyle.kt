@@ -1,6 +1,7 @@
 package com.example.oldedu
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -55,9 +56,15 @@ class edu1_lifestyle : AppCompatActivity() {
         Edu_lifestyle1 = retrofit1.create(edu_lifestyle::class.java)
         val edu_lifestyle2 = retrofit2.create(edu_lifestyle2::class.java)
         val edu_lifestyle3 = retrofit3.create(edu_lifestyle3::class.java)
-
+        //기본 값 최신순 게시글 정렬
+        binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
 
         heartbtn.setOnClickListener{
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
             Edu_lifestyle1.getpost1("")
                 .enqueue(object : Callback<searchdto>{
                     override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
@@ -82,6 +89,9 @@ class edu1_lifestyle : AppCompatActivity() {
         }
 
         viewbtn.setOnClickListener {
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
             edu_lifestyle2.getpost()
                 .enqueue(object : Callback<dto>{
                     override fun onResponse(call: Call<dto>, response: Response<dto>) {
@@ -106,6 +116,9 @@ class edu1_lifestyle : AppCompatActivity() {
         }
 
         recentbtn.setOnClickListener {
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
             edu_lifestyle3.getpost()
                 .enqueue(object : Callback<dto>{
                     override fun onResponse(call: Call<dto>, response: Response<dto>) {
