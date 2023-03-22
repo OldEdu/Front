@@ -1,6 +1,8 @@
 package com.example.oldedu
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +27,7 @@ class edu1_economic : AppCompatActivity() {
     private lateinit var adapter: eduadapter
     private lateinit var Edu_economic:edu_economic
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,7 +55,17 @@ class edu1_economic : AppCompatActivity() {
         val edu_economic2 = retrofit2.create(edu_economic2::class.java)
         val edu_economic3 = retrofit3.create(edu_economic3::class.java)
 
-        heartbtn.setOnClickListener{
+
+        //기본 값 최신순 게시글 정렬
+        binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+        binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+
+
+        binding.heartbtn.setOnClickListener{
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
             Edu_economic.getpost1("")
                 .enqueue(object : Callback<searchdto> {
                     override fun onResponse(call: Call<searchdto>, response: Response<searchdto>) {
@@ -76,7 +89,10 @@ class edu1_economic : AppCompatActivity() {
                 })
         }
 
-        viewbtn.setOnClickListener{
+        binding.viewbtn.setOnClickListener{
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
             edu_economic2.getpost()
                 .enqueue(object : Callback<dto> {
                     override fun onResponse(call: Call<dto>, response: Response<dto>) {
@@ -101,7 +117,10 @@ class edu1_economic : AppCompatActivity() {
         }
 
 
-        recentbtn.setOnClickListener{
+        binding.recentbtn.setOnClickListener{
+            binding.viewbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.heartbtn.setBackgroundColor(Color.parseColor("#2F3A8D"))
+            binding.recentbtn.setBackgroundColor(Color.parseColor("#9D9D9D"))
             edu_economic3.getpost()
                 .enqueue(object : Callback<dto> {
                     override fun onResponse(call: Call<dto>, response: Response<dto>) {

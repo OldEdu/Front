@@ -12,11 +12,13 @@ class eduadapter(private var itemClickedListener: (edu)->Unit): ListAdapter<edu,
     inner class eduItemViewHolder(private val binding: ItemLifeBinding):RecyclerView.ViewHolder(binding.root){
 
         fun bind(edumodel:edu){
+            binding.categoryText.text = edumodel.category
             binding.titletext.text = edumodel.title
-            binding.userIDtext.text = edumodel.userName
-            binding.heartcount.text = edumodel.heart.toString()
-            binding.viewcount.text = edumodel.views.toString()
-            binding.commentcount.text = edumodel.comment.toString()
+            binding.inDateText.text=edumodel.in_date
+            binding.usernameText.text = "Writer : ${edumodel.userName}"
+            binding.heartcount.text = "heart : ${edumodel.heart}"
+            binding.viewcount.text = "view : ${edumodel.views}"
+            binding.commentcount.text = "comment : ${edumodel.comment}"
 
             binding.root.setOnClickListener{
                 itemClickedListener(edumodel)

@@ -66,35 +66,45 @@
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/notosanskr_medium"
+                android:hint=" Enter the post name you want to find"
+                android:inputType="text"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/heartbtn"
-                    android:text="heart"
-                    android:layout_marginLeft="35dp"
+                    android:id="@+id/recentbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
+                    android:layout_marginLeft="35dp"
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="recent" />
+
+                <Button
+                    android:id="@+id/heartbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="heart" />
 
                 <Button
                     android:id="@+id/viewbtn"
-                    android:text="view"
-                    android:layout_marginLeft="35dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
-
-                <Button
-                    android:id="@+id/recentbtn"
-                    android:text="recent"
                     android:layout_marginLeft="35dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#2A3F8D"/>
+                    android:backgroundTint="#2A3F8D"
+                    android:fontFamily="@font/notosanskr_bold"
+                    android:text="view" />
 
 
             </LinearLayout>
