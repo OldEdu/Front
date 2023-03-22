@@ -1,6 +1,7 @@
 package com.example.oldedu.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,16 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, Detail::class.java)
-            var edumodel = edu(scrapList[position].title,scrapList[position].postID,scrapList[position].userID,scrapList[position].category,scrapList[position].scrap,scrapList[position].views,scrapList[position].userName,scrapList[position].comment,scrapList[position].scrap,scrapList[position].in_date)
+            var edumodel = edu(scrapList[position].userID,
+                scrapList[position].title,
+                scrapList[position].userName,
+                scrapList[position].category,
+                scrapList[position].heart,
+                scrapList[position].views,
+                scrapList[position].postID,
+                scrapList[position].comment,
+                scrapList[position].scrap,
+                scrapList[position].in_date)
 
             intent.putExtra("edumodel", edumodel)
             holder.itemView.context.startActivity(intent)
@@ -45,12 +55,6 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
         val scraptitle = itemView.findViewById<TextView>(R.id.scraptitle)
 
 
-    }
-
-    inner class ViewHolder(private val binding: ActivityMyscrapBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(data: Scrap){
-
-        }
     }
 
 }
