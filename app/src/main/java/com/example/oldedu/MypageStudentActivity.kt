@@ -61,11 +61,6 @@ class MypageStudentActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_scrap.setOnClickListener{
-            val intent = Intent(this, MyscrapActivity::class.java)
-            intent.putExtra("userID", userID)
-            startActivity(intent)
-        }
 
         val retrofit = Retrofit.Builder().baseUrl("http://34.168.110.14:8080/").addConverterFactory(GsonConverterFactory.create()).build()
         val service = retrofit.create(MyPageStudentApi::class.java)
@@ -73,6 +68,12 @@ class MypageStudentActivity : AppCompatActivity() {
         val userID = intent.getStringExtra("userID").toString()
 
 
+        btn_scrap.setOnClickListener{
+            val intent = Intent(this, MyscrapActivity::class.java)
+            Log.d("testtest" , userID)
+            intent.putExtra("userID", userID)
+            startActivity(intent)
+        }
 
         service.getUserID(userID).enqueue(object : Callback<MyPageStudent> {
             override fun onResponse(
