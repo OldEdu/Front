@@ -28,7 +28,6 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.scraptitle.text = scrapList[position].title
         holder.category.text = scrapList[position].category
-        holder.in_date.text = scrapList[position].in_date
         holder.heart.text = scrapList[position].heart.toString()
         holder.comment.text = scrapList[position].comment.toString()
         holder.views.text = scrapList[position].views.toString()
@@ -61,7 +60,6 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
 
         val scraptitle = itemView.findViewById<TextView>(R.id.scraptitle)
         val category = itemView.findViewById<TextView>(R.id.categoryText)
-        val in_date = itemView.findViewById<TextView>(R.id.in_dateText)
         val heart = itemView.findViewById<TextView>(R.id.heartcount)
         val comment = itemView.findViewById<TextView>(R.id.commentcount)
         val views = itemView.findViewById<TextView>(R.id.viewcount)
