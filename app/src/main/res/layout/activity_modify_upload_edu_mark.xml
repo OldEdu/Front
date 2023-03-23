@@ -16,18 +16,22 @@
 
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="62dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/notosanskr_medium"
             android:text="BACK"
             android:textColor="#ffffff"
             android:textSize="15dp" />
 
         <TextView
-            android:layout_width="290dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="3"
+            android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
             android:text="Create Contents"
             android:textAlignment="center"
@@ -36,10 +40,12 @@
 
         <Button
             android:id="@+id/btn_next"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/notosanskr_medium"
             android:text="Done"
             android:textColor="#ffffff"
             android:textSize="15dp" />
@@ -62,6 +68,7 @@
             android:background="@drawable/mark_border_box"
             android:visibility="gone"
             tools:ignore="MissingConstraints" />
+
         <ImageView
             android:id="@+id/mark_box1"
             android:layout_width="50dp"
@@ -70,6 +77,7 @@
             android:background="@drawable/mark_border_box"
             android:visibility="gone"
             tools:ignore="MissingConstraints" />
+
         <ImageView
             android:id="@+id/mark_box2"
             android:layout_width="50dp"
@@ -82,10 +90,10 @@
         <ImageView
             android:id="@+id/imgView_screenImg"
             android:layout_width="350dp"
-            android:layout_height="450dp"
+            android:layout_height="400dp"
             android:layout_marginStart="28dp"
             android:layout_marginTop="76dp"
-            android:background="@color/black"
+            android:background="@color/white"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -116,35 +124,39 @@
             android:id="@+id/mark_X"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:inputType="number"
             android:layout_marginRight="10dp"
             android:background="@drawable/upload_text_input_box"
             android:gravity="center"
-            android:hint="X" />
+            android:hint="X"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/mark_Y"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:inputType="number"
             android:background="@drawable/upload_text_input_box"
             android:gravity="center"
-            android:hint="Y" />
+            android:hint="Y"
+            android:inputType="number" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_createBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_colored_btn"
             android:text="create box" />
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_return"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/blue_colored_btn"
         android:text="return"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/linearLayout7"

@@ -9,7 +9,7 @@
         android:id="@+id/txtlist"
         android:layout_width="413dp"
         android:layout_height="542dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="180dp"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,12 +20,13 @@
         android:id="@+id/finishbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="670dp"
+        android:layout_marginTop="650dp"
+        android:backgroundTint="#2A3F8D"
+        android:fontFamily="@font/notosanskr_medium"
+        android:text="finish educated"
+        android:textSize="14dp"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="14dp"
-        android:backgroundTint="#2A3F8D"
-        android:text="finish educated"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

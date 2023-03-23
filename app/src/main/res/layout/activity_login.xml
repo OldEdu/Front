@@ -33,7 +33,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
-            android:text="Make Contents"
+            android:text="Login"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="24sp" />
@@ -127,23 +127,26 @@
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_loginSubmit"
         android:layout_width="320dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/blue_colored_btn"
         android:backgroundTint="#2A3F8D"
         android:fontFamily="@font/notosanskr_bold"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
         android:text="Login"
         android:textSize="14dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_signUp"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/transparent"
+        android:background="@drawable/login_box"
         android:fontFamily="@font/notosanskr_bold"
         android:text="Sign Up"
         android:textColor="@color/black"

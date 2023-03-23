@@ -72,7 +72,7 @@ class PageFragment : Fragment() {
 
         Glide.with(this)
             .load(imgUrl)
-            .centerCrop()
+            .fitCenter()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .dontAnimate()

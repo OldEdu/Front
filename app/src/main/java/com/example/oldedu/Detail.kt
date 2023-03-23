@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.android.volley.Request
@@ -78,9 +79,9 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
             finish()
         }
 
-        //채팅 버튼 clickListener
-        binding.btnComment.setOnClickListener{
-            requestEduPost(model?.postID.orEmpty())
+        //Home 버튼 clickListener
+        binding.btnHome.setOnClickListener{
+
         }
 
         //채팅 버튼 clickListener

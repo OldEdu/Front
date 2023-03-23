@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_upload_edu_img.*
 
 class UploadEduImgActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class UploadEduImgActivity : AppCompatActivity() {
         val postID = intent.getStringExtra("postID")
         val userID = intent.getStringExtra("userID")
 
-        btn_addImg.setOnClickListener { openGallery() }
+        btn_changeImg.setOnClickListener { openGallery() }
         btn_deleteImg.setOnClickListener { handleDelImgBtn() }
         btn_createPost.setOnClickListener {
             if(!currentImgUrl.toString().isNullOrBlank()) {
@@ -58,6 +59,8 @@ class UploadEduImgActivity : AppCompatActivity() {
                 currentImgUrl = data?.data
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentImgUrl)
+                    add_ImageView.visibility= GONE
+                    imgView_screenImg.visibility= VISIBLE
                     imgView_screenImg.setImageBitmap(bitmap)
                     Log.d("currentImgUri !! : ",currentImgUrl.toString())
 

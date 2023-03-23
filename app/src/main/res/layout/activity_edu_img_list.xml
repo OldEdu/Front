@@ -13,22 +13,27 @@
         android:background="#2A3F8D"
 
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <Button
             android:id="@+id/back_btn"
-            android:layout_width="62dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/notosanskr_medium"
             android:text="BACK"
             android:textColor="#ffffff"
             android:textSize="15dp" />
 
         <TextView
-            android:layout_width="290dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="3"
+            android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
             android:text="Educated"
             android:textAlignment="center"
@@ -37,10 +42,12 @@
 
         <Button
             android:id="@+id/btn_home"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/notosanskr_medium"
             android:text="HOME"
             android:textColor="#ffffff"
             android:textSize="15dp" />
@@ -80,15 +87,17 @@
         app:layout_constraintVertical_bias="0.872"
         tools:ignore="InvalidId" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_registerPost"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/blue_colored_btn"
         android:text="Register"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
