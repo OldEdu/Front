@@ -167,6 +167,11 @@ class edu1_transport : AppCompatActivity() {
 
             return@setOnKeyListener false
         }
+        btn_back.setOnClickListener({
+            val intent = Intent(this, CatActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
     }
     private fun search(keyword:String){
 
