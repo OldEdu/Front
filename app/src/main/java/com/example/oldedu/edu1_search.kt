@@ -174,6 +174,11 @@ class edu1_search : AppCompatActivity() {
 
             return@setOnKeyListener false
         }
+        btn_back.setOnClickListener({
+            val intent = Intent(this, CatActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
     }
     private fun search(keyword:String){
         Edu_search.getpost1(keyword)
