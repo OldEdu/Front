@@ -6,5 +6,7 @@ class CommentResponse (
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("result")
-    val commentList: ArrayList<Comment>
+    val commentList: ArrayList<Comment>,
+    @SerializedName("msg")
+    val msg:String
     )

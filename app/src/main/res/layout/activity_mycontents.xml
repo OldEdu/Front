@@ -15,9 +15,10 @@
 
         <Button
             android:id="@+id/btn_back"
-            android:layout_width="62dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:fontFamily="@font/notosanskr_medium"
             android:text="BACK"
@@ -25,9 +26,10 @@
             android:textSize="15dp" />
 
         <TextView
-            android:layout_width="290dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="3"
             android:fontFamily="@font/notosanskr_bold"
             android:gravity="center"
             android:text="MY Contents"
@@ -37,9 +39,10 @@
 
         <Button
             android:id="@+id/home"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
             android:fontFamily="@font/notosanskr_medium"
             android:text="HOME"
@@ -63,7 +66,9 @@
                 android:id="@+id/rv_contents"
                 android:layout_width="match_parent"
                 android:layout_height="655dp"
-                android:layout_marginTop="15dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp" />
         </LinearLayout>
     </ScrollView>
 
