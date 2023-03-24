@@ -10,8 +10,13 @@
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="#2A3F8D"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/layout_imgMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <Button
@@ -57,7 +62,12 @@
     <FrameLayout
         android:id="@+id/layout_imgMark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -89,10 +99,9 @@
 
         <ImageView
             android:id="@+id/imgView_screenImg"
-            android:layout_width="350dp"
-            android:layout_height="400dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="76dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
             android:background="@color/white"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_imgMark"
         app:layout_constraintVertical_bias="1.0">
 
         <TextView
@@ -144,9 +154,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
             android:background="@drawable/blue_colored_btn"
-            android:text="create box" />
+            android:text="create box"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

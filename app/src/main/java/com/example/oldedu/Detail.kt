@@ -94,7 +94,7 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     inner class CustomPagerAdapter: FragmentStateAdapter {
-        private val PAGENUMBER = eduPhotoList.size-1;
+        private val PAGENUMBER = eduPhotoList.size;
         constructor(activity: FragmentActivity):super(activity)
         override fun getItemCount(): Int {
             return PAGENUMBER;
@@ -201,15 +201,15 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
             binding.eduPhotoMsg.visibility=GONE
 
             eduPhotoList = eduPhotoResponse.eduPhotoList;
-
+            Log.d("eduPhotoList:",eduPhotoList.toString())
             //뷰페이저 생성 및 할당
             viewpager.adapter =CustomPagerAdapter(this)
             viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-            viewpager.offscreenPageLimit = eduPhotoList.size-1
+            viewpager.offscreenPageLimit = eduPhotoList.size
 
 
             indicator.setViewPager(viewpager)
-            indicator.createIndicators(eduPhotoList.size-1,0)
+            indicator.createIndicators(eduPhotoList.size,0)
 
 
             viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){

@@ -12,4 +12,9 @@ data class EduPhotoResponse(
     val msg: String,
     @SerializedName("result")
     val eduPhotoList: ArrayList<EduPhoto>
-)
+
+) {
+    override fun toString(): String {
+        return "EduPhotoResponse(eduPhotoList=$eduPhotoList)"
+    }
+}
