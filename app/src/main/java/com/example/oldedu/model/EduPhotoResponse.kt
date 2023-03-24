@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName
 data class EduPhotoResponse(
     @SerializedName("success")
     val success: Boolean,
+    @SerializedName("msg")
+    val msg: String,
     @SerializedName("result")
     val eduPhotoList: ArrayList<EduPhoto>
 )

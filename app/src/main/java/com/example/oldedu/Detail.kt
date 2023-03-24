@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -164,7 +166,7 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
             //응답
             {
                 //정상응답일때
-                //Log.d("success:","응답->$it")
+                Log.d("success:","응답->$it")
                 processResponse(it)
             },
             {
@@ -185,26 +187,40 @@ class Detail : AppCompatActivity(), TextToSpeech.OnInitListener {
     fun processResponse(response:String){
         val gson= Gson()
         val eduPhotoResponse = gson.fromJson(response, EduPhotoResponse::class.java)
+        Log.d("response",eduPhotoResponse.toString())
 
-        eduPhotoList = eduPhotoResponse.eduPhotoList;
+        if(!eduPhotoResponse.msg.isNullOrEmpty()){
+            Log.d("msg",eduPhotoResponse.msg)
+            binding.eduPhotoMsg.visibility=VISIBLE
+            binding.eduPhotoMsg.text=eduPhotoResponse.msg
+            binding.indicator.visibility= GONE
+            binding.viewpager.visibility=GONE
+            return
+        }
+        else{
+            binding.eduPhotoMsg.visibility=GONE
 
-        //뷰페이저 생성 및 할당
-        viewpager.adapter =CustomPagerAdapter(this)
-        viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        viewpager.offscreenPageLimit = eduPhotoList.size-1
+            eduPhotoList = eduPhotoResponse.eduPhotoList;
+
+            //뷰페이저 생성 및 할당
+            viewpager.adapter =CustomPagerAdapter(this)
+            viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            viewpager.offscreenPageLimit = eduPhotoList.size-1
 
 
-        indicator.setViewPager(viewpager)
-        indicator.createIndicators(eduPhotoList.size-1,0)
+            indicator.setViewPager(viewpager)
+            indicator.createIndicators(eduPhotoList.size-1,0)
 
 
-        viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                indicator.animatePageSelected(position)
-                currentPosition=position;
-            }
-        })
+            viewpager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    indicator.animatePageSelected(position)
+                    currentPosition=position;
+                }
+            })
+        }
+
     }
 
     override fun onInit(status: Int) {
