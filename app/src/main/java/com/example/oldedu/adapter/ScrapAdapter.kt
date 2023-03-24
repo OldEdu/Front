@@ -28,10 +28,10 @@ class ScrapAdapter(val scrapList: ArrayList<Scrap>):RecyclerView.Adapter<ScrapAd
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.scraptitle.text = scrapList[position].title
         holder.category.text = scrapList[position].category
-        holder.heart.text = scrapList[position].heart.toString()
-        holder.comment.text = scrapList[position].comment.toString()
-        holder.views.text = scrapList[position].views.toString()
-        holder.userName.text = scrapList[position].userName
+        holder.heart.text = "heart : ${scrapList[position].heart}"
+        holder.comment.text = "comment : ${scrapList[position].comment}"
+        holder.views.text = "view : ${scrapList[position].views}"
+        holder.userName.text = "Writer : ${scrapList[position].userName}"
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, Detail::class.java)
