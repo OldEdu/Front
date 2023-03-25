@@ -192,6 +192,17 @@ class UploadEduMarkActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, arrayOf(permission.WRITE_EXTERNAL_STORAGE), 1)
             layout_imgMark?.buildDrawingCache()
             val captureView: Bitmap? = layout_imgMark?.drawToBitmap()
+            // Calculate the new dimensions of the bitmap
+            val width = captureView!!.width
+            val height = captureView!!.height
+            Log.d("width",width.toString())
+            Log.d("height",height.toString())
+
+            //사이즈 바꿔도 흰색이 안없어져..
+            //val newWidth = 1300 // the new width you want
+            //val newHeight = 700 // calculate the proportional height
+
+            val resizedBitmap = Bitmap.createScaledBitmap(captureView!!,width, height,  false)
             val fos: FileOutputStream
 
 //            val strFolderPath = Environment.getExternalStorageDirectory().absolutePath + CAPTURE_PATH
@@ -205,7 +216,7 @@ class UploadEduMarkActivity : AppCompatActivity() {
 
             try {
                 fos = FileOutputStream(fileCacheItem)
-                captureView?.compress(Bitmap.CompressFormat.PNG, 100, fos)
+                resizedBitmap?.compress(Bitmap.CompressFormat.PNG, 100, fos)
                 val stream = FileInputStream(File(strFilePath))
 
                 Log.d("%%%%stream" , stream.toString())

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.animation.Animation
 import android.view.animation.BounceInterpolator
 import android.view.animation.ScaleAnimation
@@ -96,8 +97,11 @@ class educated3 : AppCompatActivity() {
         bounceInterpolator = BounceInterpolator()
         scaleAnimation!!.interpolator = bounceInterpolator
 
-        //하트, 스크랩 상태 화면에 출력
-        viewEduPostUserClicked(postID.orEmpty(), LoginActivity.userID)
+        if(LoginActivity.userID.length>0){
+            //하트, 스크랩 상태 화면에 출력
+            viewEduPostUserClicked(postID.orEmpty(), LoginActivity.userID)
+        }
+
 
         // 뒤로가기 버튼
         binding.backBtn.setOnClickListener {
@@ -268,7 +272,13 @@ class educated3 : AppCompatActivity() {
                          //응답
                          {
                              //성공일때
+
+                             if(commentList.size==0){
+                                 binding.commentMsgTextview.visibility= VISIBLE
+                             }
                              Log.d("댓글 삭제 성공","응답->${it}")
+
+
                          },
                          {
                              //에러일때
@@ -283,7 +293,8 @@ class educated3 : AppCompatActivity() {
                      request.setShouldCache(false)
                      //큐가알아서 요청을 보내고 응답을 받는다
                      requestQueue?.add(request)
-                 }).setNegativeButton("no",
+                 })
+             .setNegativeButton("no",
                  DialogInterface.OnClickListener { dialog, id ->
 
                  })
@@ -295,7 +306,7 @@ class educated3 : AppCompatActivity() {
 
 
     }
-
+    //댓글 수정하기 기능
     fun requestEditComment(comment: Comment,position:Int,updateCommentText:String){
         val url = "http://34.168.110.14:8080/updateComment"
         // 2. Request Obejct인 StringRequest 생성
@@ -373,7 +384,9 @@ class educated3 : AppCompatActivity() {
         // 2. Request Obejct인 StringRequest 생성
         val request = object : StringRequest(Method.POST, url,
             Response.Listener { response ->
-
+                if(commentList.size==0){
+                    binding.commentMsgTextview.visibility= GONE
+                }
                 val gson = Gson()
                 val commentResponse = gson.fromJson(response, CommentResponse::class.java)
                 Log.d("댓글 작성 성공!!",response)
@@ -624,14 +637,21 @@ class educated3 : AppCompatActivity() {
     fun commentListProcessResponse(response: String) {
         val gson = Gson()
         val commentResponse = gson.fromJson(response, CommentResponse::class.java)
+        if(!commentResponse.msg.isNullOrEmpty()){
+            binding.commentMsgTextview.visibility= VISIBLE
+            binding.commentMsgTextview.text=commentResponse.msg
+        }
+        else{
+            binding.commentMsgTextview.visibility = GONE
+            commentList = commentResponse.commentList;
 
-        commentList = commentResponse.commentList;
+            binding.rvComment.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            binding.rvComment.setHasFixedSize(true)
 
-        binding.rvComment.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvComment.setHasFixedSize(true)
+            binding.rvComment.adapter = CommentAdapter(commentList)
+        }
 
-        binding.rvComment.adapter = CommentAdapter(commentList)
     }
 
 }

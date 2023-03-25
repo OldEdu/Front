@@ -3,25 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="430dp"
+    android:fitsSystemWindows="false"
+    android:gravity="center"
+    android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <ImageView
+        android:id="@+id/eduPhotoImageView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/eduPhotoImageView"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:scaleType="center"
-            tools:srcCompat="@tools:sample/avatars" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/test1_7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

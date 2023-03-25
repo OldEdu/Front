@@ -173,6 +173,11 @@ class edu1_economic : AppCompatActivity() {
 
             return@setOnKeyListener false
         }
+        btn_back.setOnClickListener({
+            val intent = Intent(this, CatActivity::class.java)
+            startActivity(intent)
+            finish()
+        })
     }
     private fun search(keyword:String){
         Edu_economic.getpost1(keyword)

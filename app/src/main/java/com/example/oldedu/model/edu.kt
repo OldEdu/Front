@@ -19,4 +19,8 @@ data class edu (
     @SerializedName("in_date") val in_date:String
 
 
-    ): Parcelable
+    ): Parcelable {
+    override fun toString(): String {
+        return "edu(userID='$userID', title='$title', userName='$userName', category='$category', heart=$heart, views=$views, postID='$postID', comment=$comment, scrap=$scrap, in_date='$in_date')"
+    }
+}

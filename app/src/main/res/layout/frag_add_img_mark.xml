@@ -42,11 +42,14 @@
             android:hint="Y" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submitMark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/blue_colored_btn"
+        android:layout_marginTop="10dp"
         android:text="create"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
