@@ -198,10 +198,6 @@ class UploadEduMarkActivity : AppCompatActivity() {
             Log.d("width",width.toString())
             Log.d("height",height.toString())
 
-            //사이즈 바꿔도 흰색이 안없어져..
-            //val newWidth = 1300 // the new width you want
-            //val newHeight = 700 // calculate the proportional height
-
             val resizedBitmap = Bitmap.createScaledBitmap(captureView!!,width, height,  false)
             val fos: FileOutputStream
 
