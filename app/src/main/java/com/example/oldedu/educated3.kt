@@ -121,7 +121,9 @@ class educated3 : AppCompatActivity() {
             requestCommentList(postID.orEmpty())
         }
 
-
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
         //게시물 하트 수 올리기 기능
         binding.buttonFavorite.setOnCheckedChangeListener { compoundButton, isChecked ->
             if (LoginActivity.userID == "") {   //로그인 하지 않았을 경우
@@ -384,17 +386,21 @@ class educated3 : AppCompatActivity() {
         // 2. Request Obejct인 StringRequest 생성
         val request = object : StringRequest(Method.POST, url,
             Response.Listener { response ->
+                Log.d("commentListSize",commentList.size.toString())
                 if(commentList.size==0){
                     binding.commentMsgTextview.visibility= GONE
+                    binding.rvComment.visibility= VISIBLE
                 }
-                val gson = Gson()
-                val commentResponse = gson.fromJson(response, CommentResponse::class.java)
-                Log.d("댓글 작성 성공!!",response)
-                val result: ArrayList<Comment> = commentResponse.commentList;
-                val savedComment: Comment = result.get(0)
 
-                commentList.add(savedComment)
-                binding.rvComment.adapter = CommentAdapter(commentList)
+                    val gson = Gson()
+                    val commentResponse = gson.fromJson(response, CommentResponse::class.java)
+                    Log.d("댓글 작성 성공!!",response)
+                    val result: ArrayList<Comment> = commentResponse.commentList;
+                    val savedComment: Comment = result.get(0)
+
+                    commentList.add(savedComment)
+                    binding.rvComment.adapter = CommentAdapter(commentList)
+
 
 
             },

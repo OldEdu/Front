@@ -18,5 +18,8 @@ class TextGuideActivity:AppCompatActivity() {
 
         binding.textGuideTextView.text=textGuide
 
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 }
