@@ -98,13 +98,11 @@ class ModifyUploadEduImgActivity : AppCompatActivity() {
 
         btn_changeImg.setOnClickListener {
             openGallery()
-            imgUrl = currentImgUrl.toString()
+
         }
         btn_deleteImg.setOnClickListener { handleDelImgBtn() }
         btn_modifyPost.setOnClickListener {
             if(!imgUrl.isNullOrBlank()) {
-                Log.d("imgURL !!!!~~~~~~", imgUrl)
-                Log.d("test~~~~~~", eduPhotoID.toString())
                 val intent = Intent(this,ModifyUploadEduTextActivity::class.java)
                 intent.putExtra("imgUrl",imgUrl)
                 intent.putExtra("eduPhotoID" , eduPhotoID)
@@ -141,6 +139,7 @@ class ModifyUploadEduImgActivity : AppCompatActivity() {
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver,currentImgUrl)
                     imgView_screenImg.setImageBitmap(bitmap)
+                    imgUrl = currentImgUrl.toString()
                     Log.d("currentImgUri !! : ",currentImgUrl.toString())
 
                 }catch (e:Exception) {

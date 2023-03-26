@@ -19,8 +19,6 @@ class ModifyUploadEduTextActivity : AppCompatActivity() {
         val voiceGuide = intent.getStringExtra("voiceGuide")
         val postID = intent.getStringExtra("postID")
 
-        Log.d("여기 뭘까 ," , imgUrl.toString())
-
         editText_voice.setText(voiceGuide)
         editText_text.setText(textGuide)
 
